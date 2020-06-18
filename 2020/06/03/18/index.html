@@ -26,7 +26,7 @@
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
   
-    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/ocean.min.css" />
   
 
   
@@ -225,7 +225,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年6月15日 晚上
+                  本文最后更新于：2020年6月18日 上午
                 
               </p>
             
@@ -250,19 +250,19 @@
 <p>在 Java 中数组的下标是从零开始的，很多计算机语言的数组下标也从零开始。Java 数组下标访问运算符是中括号，如 intArray[0]，表示访问 intArray 数组的第一个元素，0 是第一个元素的下标。Java 中的数组本身是引用数据类型，它的长度属性是 length。</p>
 <hr>
 <h3 id="数组的初始化"><a href="#数组的初始化" class="headerlink" title="数组的初始化"></a>数组的初始化</h3><p>Java 一维数组有两种初始化方法</p>
-<h4 id="静态初始化"><a href="#静态初始化" class="headerlink" title="静态初始化"></a>静态初始化</h4><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">int</span> array[] = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[]&#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>&#125;
+<h4 id="静态初始化"><a href="#静态初始化" class="headerlink" title="静态初始化"></a>静态初始化</h4><pre><code class="hljs java"><span class="hljs-keyword">int</span> array[] = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[]&#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>&#125;
 <span class="hljs-comment">//或者</span>
-<span class="hljs-keyword">int</span> array[] = &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>&#125;</code></pre></div>
+<span class="hljs-keyword">int</span> array[] = &#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>&#125;</code></pre>
 
 <p>需要注意的是，写成如下形式是错误的</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">int</span> array[] = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">5</span>]&#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>&#125;</code></pre></div>
+<pre><code class="hljs java"><span class="hljs-keyword">int</span> array[] = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">5</span>]&#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>&#125;</code></pre>
 
-<h4 id="动态初始化"><a href="#动态初始化" class="headerlink" title="动态初始化"></a>动态初始化</h4><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">int</span> array[] = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">5</span>];
+<h4 id="动态初始化"><a href="#动态初始化" class="headerlink" title="动态初始化"></a>动态初始化</h4><pre><code class="hljs java"><span class="hljs-keyword">int</span> array[] = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">5</span>];
 array[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;
 array[<span class="hljs-number">1</span>] = <span class="hljs-number">2</span>;
 array[<span class="hljs-number">2</span>] = <span class="hljs-number">3</span>;
 array[<span class="hljs-number">3</span>] = <span class="hljs-number">4</span>;
-array[<span class="hljs-number">4</span>] = <span class="hljs-number">5</span>;</code></pre></div>
+array[<span class="hljs-number">4</span>] = <span class="hljs-number">5</span>;</code></pre>
 
 <p>静态与动态初始化的区别就在于，前者是声明的时候就初始化，后者是先声明，再动态初始化。</p>
 <hr>
@@ -270,7 +270,7 @@ array[<span class="hljs-number">4</span>] = <span class="hljs-number">5</span>;<
 <p>数组内部保存的数据的访问方式<br>格式:数组名[索引]</p>
 <p>索引是数组中数据的编号方式<br>作用:索引用于访问数组中的数据使用，数组名索引]等同于效名,是一种特殊的变量铭</p>
 <p>特征①:索引从0开始<br>特征②:索引是连续的<br>特征③:索引逐一增加，每次加1</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> ArrayDemo;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> ArrayDemo;
 
 <span class="hljs-comment">/*</span>
 <span class="hljs-comment">数组:是一种用于存储多个相同类型数据的存储模型</span>
@@ -310,24 +310,24 @@ array[<span class="hljs-number">4</span>] = <span class="hljs-number">5</span>;<
         System.out.println(arr[<span class="hljs-number">1</span>]);
         System.out.println(arr[<span class="hljs-number">2</span>]);
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <hr>
 <h3 id="内存分配"><a href="#内存分配" class="headerlink" title="内存分配"></a>内存分配</h3><h4 id="java中的内存分配"><a href="#java中的内存分配" class="headerlink" title="java中的内存分配"></a>java中的内存分配</h4><p>栈内存:存储局部变量<br>定义在方法中的变量，使用完毕,立即消失<br>堆内存:存储new出来的内容(实体,对象)<br>数组在初始化时，会为存储空间添加默认值<br>整数: 0<br>浮点数: 0.0<br>布尔: false<br>字符:空字符<br>引用数据类型: null<br>每一个new出来的东西都有一个地址值，使用完毕，会在垃圾回收器空闲时被回收。</p>
-<h4 id="数组内存图（单个数组）"><a href="#数组内存图（单个数组）" class="headerlink" title="数组内存图（单个数组）"></a>数组内存图（单个数组）</h4><div class="hljs"><pre><code class="hljs java"> <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Demo04</span> </span>&#123;
+<h4 id="数组内存图（单个数组）"><a href="#数组内存图（单个数组）" class="headerlink" title="数组内存图（单个数组）"></a>数组内存图（单个数组）</h4><pre><code class="hljs java"> <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Demo04</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
         <span class="hljs-keyword">int</span>[] arr = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">3</span>];
         System.out.println(arr); <span class="hljs-comment">// [I@50cbc42f</span>
         arr[<span class="hljs-number">1</span>] = <span class="hljs-number">2</span>;
         System.out.println(arr[<span class="hljs-number">1</span>]);
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 
 
 <p>以上方法执行，输出的结果是[I@5f150435，这个是什么?</p>
 <p>​        是数组在内存中的地址。new出来的内容，都是在堆内存中存储的，而方法中的变量arr保存的是数组的地址。 <strong>输出arr[0]，就会输出arr保存的内存地址中数组中0索引上的元素</strong>。</p>
-<h4 id="数组内存图（多个数组）"><a href="#数组内存图（多个数组）" class="headerlink" title="数组内存图（多个数组）"></a>数组内存图（多个数组）</h4><div class="hljs"><pre><code class="hljs java"> <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+<h4 id="数组内存图（多个数组）"><a href="#数组内存图（多个数组）" class="headerlink" title="数组内存图（多个数组）"></a>数组内存图（多个数组）</h4><pre><code class="hljs java"> <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
     <span class="hljs-keyword">int</span>[] arr1 = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">2</span>];
     <span class="hljs-keyword">int</span>[] arr2 = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">3</span>];
     System.out.println(arr1);
@@ -349,14 +349,14 @@ array[<span class="hljs-number">4</span>] = <span class="hljs-number">5</span>;<
     System.out.println(arr2[<span class="hljs-number">0</span>]);
     System.out.println(arr2[<span class="hljs-number">1</span>]);
     System.out.println(arr2[<span class="hljs-number">2</span>]);
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <hr>
 <h3 id="数组初始化之静态初始化"><a href="#数组初始化之静态初始化" class="headerlink" title="数组初始化之静态初始化"></a>数组初始化之静态初始化</h3><p>静态初始化:初始化时指定每个数组元素的初始值，由系统决定数组长度<br>格式:数据类型[]变量名= new数据类型[]{数据1,数据2,数据3,…..</p>
 <p>范例：int[] arr=new int[]{1,2,3};</p>
 <p>简化格式：数据类型[]变量名={数据1，数据2，数据3，·····}</p>
 <p>范例： int[] arr={1,2,3};</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> ArrayDemo;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> ArrayDemo;
 
 <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">array02</span> </span>&#123;
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
@@ -372,17 +372,17 @@ array[<span class="hljs-number">4</span>] = <span class="hljs-number">5</span>;<
         System.out.println(arr[<span class="hljs-number">2</span>]);
 
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p>输出：</p>
-<div class="hljs"><pre><code class="hljs angelscript">[<span class="hljs-symbol">I@</span><span class="hljs-number">1</span>b6d3586
+<pre><code class="hljs angelscript">[<span class="hljs-symbol">I@</span><span class="hljs-number">1</span>b6d3586
 <span class="hljs-number">1</span>
 <span class="hljs-number">2</span>
-<span class="hljs-number">3</span></code></pre></div>
+<span class="hljs-number">3</span></code></pre>
 
 <hr>
 <h3 id="数组操作的两个常见小问题"><a href="#数组操作的两个常见小问题" class="headerlink" title="数组操作的两个常见小问题"></a>数组操作的两个常见小问题</h3><h4 id="索引越界-访问了数组中不存在的索-对应的元素，造成索引越界问题"><a href="#索引越界-访问了数组中不存在的索-对应的元素，造成索引越界问题" class="headerlink" title="索引越界:访问了数组中不存在的索|对应的元素，造成索引越界问题"></a>索引越界:访问了数组中不存在的索|对应的元素，造成索引越界问题</h4><h4 id="空指针异常-访问的数组已经不再指向堆内存的数据，造成空指针异常"><a href="#空指针异常-访问的数组已经不再指向堆内存的数据，造成空指针异常" class="headerlink" title="空指针异常:访问的数组已经不再指向堆内存的数据，造成空指针异常"></a>空指针异常:访问的数组已经不再指向堆内存的数据，造成空指针异常</h4><p>null:空值,引用数据类型的默认值，表示不指向任何有效对象</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> ArrayDemo;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> ArrayDemo;
         <span class="hljs-comment">/*</span>
 <span class="hljs-comment">        索引越界:访问了数组中不存在的索引对应的元素，造成索引越界问题</span>
 <span class="hljs-comment">        ArrayIndexOutOfBoundsException</span>
@@ -409,19 +409,19 @@ array[<span class="hljs-number">4</span>] = <span class="hljs-number">5</span>;<
         <span class="hljs-comment">//Exception in thread "main" java.lang.NullPointerException</span>
         
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <hr>
 <h3 id="数组常见操作"><a href="#数组常见操作" class="headerlink" title="数组常见操作"></a>数组常见操作</h3><h4 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h4><h4 id="获取数组元素数量"><a href="#获取数组元素数量" class="headerlink" title="获取数组元素数量"></a>获取数组元素数量</h4><p>格式:数组名length<br>范例: arr.length</p>
 <p>遍历通用格式:</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">int</span>[] arr = &#123;.....&#125;
+<pre><code class="hljs java"><span class="hljs-keyword">int</span>[] arr = &#123;.....&#125;
 
 <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> x=<span class="hljs-number">0</span>; x&lt;arr.length;x++)&#123;
 	arr[x]	<span class="hljs-comment">//对arr[x]进行操作</span>
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 <p>案例：</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> ArrayDemo;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> ArrayDemo;
 
 <span class="hljs-comment">/*</span>
 <span class="hljs-comment">遍历</span>
@@ -440,28 +440,28 @@ array[<span class="hljs-number">4</span>] = <span class="hljs-number">5</span>;<
             System.out.println(arr[x]);
         &#125;
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 
 
-<h4 id="获取最值"><a href="#获取最值" class="headerlink" title="获取最值"></a>获取最值</h4><div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">int</span>[] arr = &#123;<span class="hljs-number">12</span>,<span class="hljs-number">45</span>,<span class="hljs-number">98</span>,<span class="hljs-number">73</span>,<span class="hljs-number">60</span>&#125;;</code></pre></div>
+<h4 id="获取最值"><a href="#获取最值" class="headerlink" title="获取最值"></a>获取最值</h4><pre><code class="hljs java"><span class="hljs-keyword">int</span>[] arr = &#123;<span class="hljs-number">12</span>,<span class="hljs-number">45</span>,<span class="hljs-number">98</span>,<span class="hljs-number">73</span>,<span class="hljs-number">60</span>&#125;;</code></pre>
 
 <p>思路:<br>1:定义-个变量,用于保存最大值(或最小值)</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">int</span> max;</code></pre></div>
+<pre><code class="hljs java"><span class="hljs-keyword">int</span> max;</code></pre>
 
 <p>2:取数组中第一个数据作为变 量的初始值</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">int</span> max = arr[<span class="hljs-number">0</span>];</code></pre></div>
+<pre><code class="hljs java"><span class="hljs-keyword">int</span> max = arr[<span class="hljs-number">0</span>];</code></pre>
 
 <p>3:与数组中剩余的数据逐个比对,每次比对将最大值保存到(max)变量中</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> x=<span class="hljs-number">1</span>; x&lt;arr .length;X++) &#123;
-&#125;</code></pre></div>
+<pre><code class="hljs java"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> x=<span class="hljs-number">1</span>; x&lt;arr .length;X++) &#123;
+&#125;</code></pre>
 
 <p>4:循环结束后打印变量的值</p>
-<div class="hljs"><pre><code class="hljs java">System.out . println(<span class="hljs-string">"max: "</span>+max);</code></pre></div>
+<pre><code class="hljs java">System.out . println(<span class="hljs-string">"max: "</span>+max);</code></pre>
 
 <hr>
 <p>案例：</p>
-<div class="hljs"><pre><code class="hljs java"><span class="hljs-keyword">package</span> ArrayDemo;
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> ArrayDemo;
 
 <span class="hljs-comment">/*</span>
 <span class="hljs-comment">获取最值</span>
@@ -489,12 +489,12 @@ array[<span class="hljs-number">4</span>] = <span class="hljs-number">5</span>;<
         System.out.println(<span class="hljs-string">"max:"</span>+ max);
 
     &#125;
-&#125;</code></pre></div>
+&#125;</code></pre>
 
 
 
 <p>输出：</p>
-<div class="hljs"><pre><code class="hljs java">max:<span class="hljs-number">4324</span></code></pre></div>
+<pre><code class="hljs java">max:<span class="hljs-number">4324</span></code></pre>
 
 
 
@@ -528,12 +528,6 @@ array[<span class="hljs-number">4</span>] = <span class="hljs-number">5</span>;<
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/06/15/3/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">手工注入思路</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
@@ -554,28 +548,30 @@ array[<span class="hljs-number">4</span>] = <span class="hljs-number">5</span>;<
               <div class="comments" id="comments">
                 
                 
-  <div class="disqus" style="width:100%">
-    <div id="disqus_thread"></div>
-    <script type="text/javascript">
-      function loadDisqus() {
-        var disqus_config = function () {
-          this.page.url = 'https://mvpxt.github.io/2020/06/03/18/';
-          this.page.identifier = '/2020/06/03/18/';
-        };
-        (function () {
-          var d = document,
-            s = d.createElement('script');
-          s.src = '//' + '' + '.disqus.com/embed.js';
-          s.setAttribute('data-timestamp', new Date());
-          (d.head || d.body).appendChild(s);
-        })();
-      }
-      createObserver(loadDisqus, 'disqus_thread');
-    </script>
-    <noscript>Please enable JavaScript to view the
-      <a href="https://disqus.com/?ref_noscript" target="_blank" rel="nofollow noopener noopener">comments powered by Disqus.</a>
-    </noscript>
-  </div>
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "awU93jjvUzCS1tvQr11dtYol-gzGzoHsz",
+          app_key: "X2NMIJH8dFYQ9eqkVHeV9aRa",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    }
+    createObserver(loadValine, 'vcomments');
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
 
 
               </div>
@@ -670,8 +666,8 @@ array[<span class="hljs-number">4</span>] = <span class="hljs-number">5</span>;<
     <div>
       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>MVPXT</span></a>
       <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
+      <a href="https://www.mvpxt.cn/" target="_blank" rel="nofollow noopener">
+        <span>过你想要的生活</span></a>
     </div>
     
   <div class="statistics">
@@ -911,5 +907,5 @@ array[<span class="hljs-number">4</span>] = <span class="hljs-number">5</span>;<
 
 
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"rect":{"opacity":1},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"rect":{"opacity":1},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
