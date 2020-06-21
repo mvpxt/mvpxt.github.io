@@ -38,6 +38,10 @@
 
 <!-- 自定义样式保持在最底部 -->
 
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
 
   <script  src="/js/utils.js" ></script>
 <meta name="generator" content="Hexo 4.2.1"></head>
@@ -151,9 +155,16 @@
           <div class="container text-center white-text fadeInUp">
             <span class="h2" id="subtitle">
               
-            </span>
-
-            
+          </span>
+          
+          
+          <br>
+          <span class="h2" id="hitokoto">
+              
+          </span>
+          
+          
+          
           </div>
 
           
@@ -246,7 +257,7 @@
       order: 'random',
       theme: '#0099cc',
       preload: 'none',
-      audio: [{"name":"Pride","volume":"0.7","artist":"遥海","url":"https://sharefs.yun.kugou.com/202006151911/65c3d9815139a0c11cc8cca38c4bba6a/G210/M08/1A/00/Eg4DAF6y4mOAfHPgAELJ5SHv5-k193.mp3","cover":"http://img.mvpxt.cn/Pride.jpg"},{"name":"Used to","volume":"0.7","artist":"James Carter","url":"https://sharefs.yun.kugou.com/202006152303/76ca7f1d58ebc4e8e2f4151fead5bbb9/G147/M04/1F/11/M4cBAFx0E66AV_mkACk0viPLB30239.mp3","cover":"http://img.mvpxt.cn/Used%20to.jpg"},{"name":"Brick","volume":"0.7","artist":"Ben Folds Five","url":"https://sharefs.yun.kugou.com/202006152311/ac545fc343ebb014c51a8580e4d886a3/G140/M08/13/08/zA0DAFvP9nuAO660AEKtcAgoDaQ346.mp3","cover":"http://img.mvpxt.cn/brick.jpg"}]
+      audio: [{"name":"Pride","volume":"0.7","artist":"遥海","url":"https://img.mvpxt.cn/%E9%81%A5%E6%B5%B7%20-%20Pride.mp3","cover":"http://img.mvpxt.cn/Pride.jpg"},{"name":"Used to","volume":"0.7","artist":"James Carter","url":"https://img.mvpxt.cn/James%20Carter%2CKaii%20-%20Used%20To.flac","cover":"http://img.mvpxt.cn/Used%20to.jpg"},{"name":"Brick","volume":"0.7","artist":"Ben Folds Five","url":"https://img.mvpxt.cn/%E5%A4%A7%E6%A9%8B%E3%83%88%E3%83%AA%E3%82%AA%20-%20Brick.mp3","cover":"https://img.mvpxt.cn/Brick"}]
     });
   }
 </script>
@@ -332,22 +343,31 @@
 
   <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
   <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "标签 - Java&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 65,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
+    function typing(id, title){
+        var typed = new Typed('#' + id, {
+            strings: [
+              '  ',
+              title + "&nbsp;",
+            ],
+            cursorChar: "_",
+            typeSpeed: 65,
+            loop: false,
+        });
+        typed.stop();
+        $(document).ready(function () {
+            $(".typed-cursor").addClass("h2");
+            typed.start();
+        });
+    }
+    
+        fetch('https://v1.hitokoto.cn')
+        .then(response => response.json())
+        .then(data => {
+           typing("hitokoto", data.hitokoto)
+        })
+        .catch(console.error)
+    
   </script>
-
 
 
 
