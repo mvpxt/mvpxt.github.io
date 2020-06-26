@@ -48,17 +48,6 @@
 
 
 <body>
-  <div id="dark" onclick="switchDarkMode()"></div>
-<script>
-  var isNight = new Date().getHours() >= 22 || new Date().getHours() < 7; // 指定时间
-  // 依次判断 系统暗黑模式 指定时间 缓存 dark
-  if( matchMedia('(prefers-color-scheme: dark)').matches || isNight || localStorage.getItem('dark') === '1') {
-    if(!(isNight&&localStorage.getItem('noDark') === '1')) {
-      document.body.classList.add('dark');
-    }
-  }
-  document.getElementById('dark').innerHTML = document.querySelector("body").classList.contains("dark")?"🌙":"🌞";
-</script>
 
   <header style="height: 60vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
@@ -149,15 +138,43 @@
           
         
         
-          <li class="nav-item" id="search-btn">
+         <li class="nav-item" id="search-btn">
             <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
                 class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
-          </li>
+          </li> 
         
       </ul>
+        <li id="dark" onclick="switchDarkMode()"></li>
     </div>
   </div>
 </nav>
+
+
+<script>
+  var isNight = new Date().getHours() >= 22 || new Date().getHours() < 5; // 指定时间
+  // 依次判断 系统暗黑模式 指定时间 缓存 dark
+  if (matchMedia('(prefers-color-scheme: dark)').matches || isNight || localStorage.getItem('dark') === '1') {
+    if (!(isNight && localStorage.getItem('noDark') === '1')) {
+      document.body.classList.add('dark');
+    }
+  }
+  //点击事件
+  function switchDarkMode() {
+    if ($('body').hasClass('dark')) {
+      document.getElementById('dark').style.backgroundImage = 'url(/img/太阳.png)'
+      document.body.classList.remove('dark');
+      localStorage.setItem('noDark', '1');
+      localStorage.setItem('dark', '0');
+    } else {
+      document.getElementById('dark').style.backgroundImage = 'url(/img/月亮.png)'
+      document.body.classList.add('dark');
+      localStorage.setItem('dark', '1');
+      localStorage.setItem('noDark', '0');
+    }
+  }
+
+</script>
+
 
     <div class="view intro-2" id="background" parallax=true
          style="background: url('https://img.mvpxt.cn/Venice02.jpg') no-repeat center center;
@@ -212,28 +229,35 @@
     <div class="category row">
       <a
         class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-ckbvwqsof0004aocoe79sczqo" role="tab" data-toggle="collapse" href="#collapse-ckbvwqsof0004aocoe79sczqo"
+        id="heading-ckbw74a6z000pzwco47p3fd7i" role="tab" data-toggle="collapse" href="#collapse-ckbw74a6z000pzwco47p3fd7i"
         aria-expanded="false"
       >
-        Share
+        主题配置
         <i class="iconfont icon-arrowright"></i>
       </a>
-      <a href="/categories/Share/" class="category-count col-2 col-md-1">
+      <a href="/categories/%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/" class="category-count col-2 col-md-1">
         <i class="iconfont icon-articles"></i>
-        <span>1</span>
+        <span>2</span>
       </a>
       <div class="category-collapse">
         
           
-  <div id="collapse-ckbvwqsof0004aocoe79sczqo" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-ckbvwqsof0004aocoe79sczqo">
+  <div id="collapse-ckbw74a6z000pzwco47p3fd7i" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckbw74a6z000pzwco47p3fd7i">
     
     
     
       
       
-        <a href="/2020/05/29/17/" class="list-group-item list-group-item-action">
-          <span class="category-post">学习网站分享</span>
+        <a href="/2020/06/26/biaoqian/" class="list-group-item list-group-item-action">
+          <span class="category-post">标签</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2020/06/26/zhutiyouhua/" class="list-group-item list-group-item-action">
+          <span class="category-post">主题优化</span>
         </a>
       
     
@@ -248,7 +272,7 @@
     <div class="category row">
       <a
         class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-ckbvwqsom0009aocod6j9fc14" role="tab" data-toggle="collapse" href="#collapse-ckbvwqsom0009aocod6j9fc14"
+        id="heading-ckbw74a6p0002zwcob0k6geeu" role="tab" data-toggle="collapse" href="#collapse-ckbw74a6p0002zwcob0k6geeu"
         aria-expanded="false"
       >
         Java
@@ -261,8 +285,8 @@
       <div class="category-collapse">
         
           
-  <div id="collapse-ckbvwqsom0009aocod6j9fc14" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-ckbvwqsom0009aocod6j9fc14">
+  <div id="collapse-ckbw74a6p0002zwcob0k6geeu" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckbw74a6p0002zwcob0k6geeu">
     
     
     
@@ -284,43 +308,7 @@
     <div class="category row">
       <a
         class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-ckbvwqsoq000faoco6q5hhfex" role="tab" data-toggle="collapse" href="#collapse-ckbvwqsoq000faoco6q5hhfex"
-        aria-expanded="false"
-      >
-        花里胡哨
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      <a href="/categories/%E8%8A%B1%E9%87%8C%E8%83%A1%E5%93%A8/" class="category-count col-2 col-md-1">
-        <i class="iconfont icon-articles"></i>
-        <span>1</span>
-      </a>
-      <div class="category-collapse">
-        
-          
-  <div id="collapse-ckbvwqsoq000faoco6q5hhfex" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-ckbvwqsoq000faoco6q5hhfex">
-    
-    
-    
-      
-      
-        <a href="/2020/06/25/duanwu/" class="list-group-item list-group-item-action">
-          <span class="category-post">端午安康！</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    <div class="category row">
-      <a
-        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-ckbvwqsos000jaoco92mtcxcq" role="tab" data-toggle="collapse" href="#collapse-ckbvwqsos000jaoco92mtcxcq"
+        id="heading-ckbw74a6t0007zwco13qu33le" role="tab" data-toggle="collapse" href="#collapse-ckbw74a6t0007zwco13qu33le"
         aria-expanded="false"
       >
         健身
@@ -333,8 +321,8 @@
       <div class="category-collapse">
         
           
-  <div id="collapse-ckbvwqsos000jaoco92mtcxcq" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-ckbvwqsos000jaoco92mtcxcq">
+  <div id="collapse-ckbw74a6t0007zwco13qu33le" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckbw74a6t0007zwco13qu33le">
     
     
     
@@ -356,7 +344,43 @@
     <div class="category row">
       <a
         class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-ckbvwqsov000oaoco69m35vbx" role="tab" data-toggle="collapse" href="#collapse-ckbvwqsov000oaoco69m35vbx"
+        id="heading-ckbw74a6v000dzwco9rjdfzwz" role="tab" data-toggle="collapse" href="#collapse-ckbw74a6v000dzwco9rjdfzwz"
+        aria-expanded="false"
+      >
+        Share
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/Share/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckbw74a6v000dzwco9rjdfzwz" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckbw74a6v000dzwco9rjdfzwz">
+    
+    
+    
+      
+      
+        <a href="/2020/05/29/17/" class="list-group-item list-group-item-action">
+          <span class="category-post">学习网站分享</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckbw74a6y000kzwco3ud78l54" role="tab" data-toggle="collapse" href="#collapse-ckbw74a6y000kzwco3ud78l54"
         aria-expanded="false"
       >
         Python
@@ -369,8 +393,8 @@
       <div class="category-collapse">
         
           
-  <div id="collapse-ckbvwqsov000oaoco69m35vbx" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-ckbvwqsov000oaoco69m35vbx">
+  <div id="collapse-ckbw74a6y000kzwco3ud78l54" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckbw74a6y000kzwco3ud78l54">
     
     
     
@@ -392,7 +416,43 @@
     <div class="category row">
       <a
         class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-ckbvwqsow000saoco8lyx2zwc" role="tab" data-toggle="collapse" href="#collapse-ckbvwqsow000saoco8lyx2zwc"
+        id="heading-ckbw74a70000tzwco3vx6c0k8" role="tab" data-toggle="collapse" href="#collapse-ckbw74a70000tzwco3vx6c0k8"
+        aria-expanded="false"
+      >
+        花里胡哨
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/categories/%E8%8A%B1%E9%87%8C%E8%83%A1%E5%93%A8/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckbw74a70000tzwco3vx6c0k8" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckbw74a70000tzwco3vx6c0k8">
+    
+    
+    
+      
+      
+        <a href="/2020/06/25/duanwu/" class="list-group-item list-group-item-action">
+          <span class="category-post">端午安康！</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckbw74a71000xzwco90j1ah4u" role="tab" data-toggle="collapse" href="#collapse-ckbw74a71000xzwco90j1ah4u"
         aria-expanded="false"
       >
         杂项
@@ -405,8 +465,8 @@
       <div class="category-collapse">
         
           
-  <div id="collapse-ckbvwqsow000saoco8lyx2zwc" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-ckbvwqsow000saoco8lyx2zwc">
+  <div id="collapse-ckbw74a71000xzwco90j1ah4u" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckbw74a71000xzwco90j1ah4u">
     
     
     
@@ -428,7 +488,7 @@
     <div class="category row">
       <a
         class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
-        id="heading-ckbvwqsoy000waoco0otd5zak" role="tab" data-toggle="collapse" href="#collapse-ckbvwqsoy000waoco0otd5zak"
+        id="heading-ckbw74a720011zwco3ksdfrfo" role="tab" data-toggle="collapse" href="#collapse-ckbw74a720011zwco3ksdfrfo"
         aria-expanded="false"
       >
         Web安全
@@ -441,8 +501,8 @@
       <div class="category-collapse">
         
           
-  <div id="collapse-ckbvwqsoy000waoco0otd5zak" class="collapse in" role="tabpanel"
-       aria-labelledby="heading-ckbvwqsoy000waoco0otd5zak">
+  <div id="collapse-ckbw74a720011zwco3ksdfrfo" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckbw74a720011zwco3ksdfrfo">
     
     
     
@@ -576,30 +636,6 @@
         
     </div>
     
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
 
     
   <!-- 备案信息 -->

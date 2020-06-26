@@ -48,17 +48,6 @@
 
 
 <body>
-  <div id="dark" onclick="switchDarkMode()"></div>
-<script>
-  var isNight = new Date().getHours() >= 22 || new Date().getHours() < 7; // 指定时间
-  // 依次判断 系统暗黑模式 指定时间 缓存 dark
-  if( matchMedia('(prefers-color-scheme: dark)').matches || isNight || localStorage.getItem('dark') === '1') {
-    if(!(isNight&&localStorage.getItem('noDark') === '1')) {
-      document.body.classList.add('dark');
-    }
-  }
-  document.getElementById('dark').innerHTML = document.querySelector("body").classList.contains("dark")?"🌙":"🌞";
-</script>
 
   <header style="height: 60vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
@@ -149,15 +138,43 @@
           
         
         
-          <li class="nav-item" id="search-btn">
+         <li class="nav-item" id="search-btn">
             <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
                 class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
-          </li>
+          </li> 
         
       </ul>
+        <li id="dark" onclick="switchDarkMode()"></li>
     </div>
   </div>
 </nav>
+
+
+<script>
+  var isNight = new Date().getHours() >= 22 || new Date().getHours() < 5; // 指定时间
+  // 依次判断 系统暗黑模式 指定时间 缓存 dark
+  if (matchMedia('(prefers-color-scheme: dark)').matches || isNight || localStorage.getItem('dark') === '1') {
+    if (!(isNight && localStorage.getItem('noDark') === '1')) {
+      document.body.classList.add('dark');
+    }
+  }
+  //点击事件
+  function switchDarkMode() {
+    if ($('body').hasClass('dark')) {
+      document.getElementById('dark').style.backgroundImage = 'url(/img/太阳.png)'
+      document.body.classList.remove('dark');
+      localStorage.setItem('noDark', '1');
+      localStorage.setItem('dark', '0');
+    } else {
+      document.getElementById('dark').style.backgroundImage = 'url(/img/月亮.png)'
+      document.body.classList.add('dark');
+      localStorage.setItem('dark', '1');
+      localStorage.setItem('noDark', '0');
+    }
+  }
+
+</script>
+
 
     <div class="view intro-2" id="background" parallax=true
          style="background: url('https://img.mvpxt.cn/youhua01.jpg') no-repeat center center;
@@ -261,6 +278,23 @@
           <div class="link-text">
             <div class="link-title">Future-tt</div>
             <div class="link-intro">回头发望，我们携手走过漫长的旅程</div>
+          </div>
+        </div>
+      </a>
+    </div>
+  
+    
+    <div class="card col-lg-4 col-md-6 col-sm-12">
+      <a href="https://blog.lzwzw.cn/" class="card-body hover-with-bg" target="_blank" rel="noopener">
+        <div class="card-content">
+          
+            <div class="link-avatar my-auto">
+              <img src="https://blog.lzwzw.cn/img/avatat.jpg" srcset="/img/loading.gif" alt="小九" />
+            </div>
+          
+          <div class="link-text">
+            <div class="link-title">小九</div>
+            <div class="link-intro">写代码是热爱，写到世界充满爱！</div>
           </div>
         </div>
       </a>
@@ -383,30 +417,6 @@
         
     </div>
     
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
 
     
   <!-- 备案信息 -->
