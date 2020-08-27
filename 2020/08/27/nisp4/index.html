@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" type="image/png" href="/img/favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="划船不用桨，一生全靠浪">
+  <meta name="author" content="XT">
+  <meta name="keywords" content="">
+  <title>nisp（4）网络通信安全 - XT-Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/ocean.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>MVPXT</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+         <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li> 
+          <li class="nav-item" onclick="switchDarkMode()">
+            <span id="dark"></span>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<script>
+  var isNight = new Date().getHours() >= 22 || new Date().getHours() < 5; // 指定时间
+  // 依次判断 系统暗黑模式 指定时间 缓存 dark
+  if (matchMedia('(prefers-color-scheme: dark)').matches || isNight || localStorage.getItem('dark') === '1') {
+    if (!(isNight && localStorage.getItem('noDark') === '1')) {
+      document.body.classList.add('dark');
+    }
+  }
+  //点击事件
+  function switchDarkMode() {
+    if ($('body').hasClass('dark')) {
+      document.getElementById('dark').style.backgroundImage = 'url(/img/太阳.png)'
+      document.body.classList.remove('dark');
+      localStorage.setItem('noDark', '1');
+      localStorage.setItem('dark', '0');
+    } else {
+      document.getElementById('dark').style.backgroundImage = 'url(/img/月亮.png)'
+      document.body.classList.add('dark');
+      localStorage.setItem('dark', '1');
+      localStorage.setItem('noDark', '0');
+    }
+  }
+
+</script>
+
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('https://img.mvpxt.cn/city02.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+          </span>
+          
+          
+          
+          
+          
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-27 23:35">
+      2020年8月27日 晚上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      56
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+          
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年8月27日 晚上
+                
+              </p>
+            
+            <article class="markdown-body">
+              <h1 id="第四章：网络通信安全"><a href="#第四章：网络通信安全" class="headerlink" title="第四章：网络通信安全"></a>第四章：网络通信安全</h1><h2 id="知识子域1-OSI通信模型"><a href="#知识子域1-OSI通信模型" class="headerlink" title="知识子域1-OSI通信模型"></a>知识子域1-OSI通信模型</h2><h2 id="知识子域2-TCP-IP协议模型"><a href="#知识子域2-TCP-IP协议模型" class="headerlink" title="知识子域2-TCP/IP协议模型"></a>知识子域2-TCP/IP协议模型</h2><h2 id="知识子域3-无线通信安全"><a href="#知识子域3-无线通信安全" class="headerlink" title="知识子域3-无线通信安全"></a>知识子域3-无线通信安全</h2><h2 id="知识子域4-典型网络攻击与防范"><a href="#知识子域4-典型网络攻击与防范" class="headerlink" title="知识子域4-典型网络攻击与防范"></a>知识子域4-典型网络攻击与防范</h2><h2 id="知识子域5-网络安全防护技术"><a href="#知识子域5-网络安全防护技术" class="headerlink" title="知识子域5-网络安全防护技术"></a>知识子域5-网络安全防护技术</h2><hr>
+<h2 id="知识子域1-OSI通信模型-1"><a href="#知识子域1-OSI通信模型-1" class="headerlink" title="知识子域1-OSI通信模型"></a>知识子域1-OSI通信模型</h2><p>◆OSI模型</p>
+<p>◆理解OSI七层模型构成及每一层的作用；理解协议分层的作用。<br>◆OSI模型通信过程</p>
+<p>◆理解OSI模型通信过程及数据封装、分用等概念</p>
+<p>◆OSI模型安全体系构成</p>
+<p>◆了解OSI模型安全体系的构成；</p>
+<p>◆了解OSI模型的五类安全服务、八种安全机制的概念</p>
+<p>七层模型结构：</p>
+<p><strong>应用层</strong><br><strong>表示层</strong><br><strong>会话层</strong><br><strong>传输层</strong><br><strong>网络层</strong><br><strong>数据链路层</strong><br><strong>物理层</strong></p>
+<p>◆模型定义了网络中不同计算机系统进行通信的基本过程和方法</p>
+<p>◆底层协议</p>
+<p>◆偏重于处理实际的信息传输，负责创建网络通信连接的链路，包括物理层、数据链路层、网络层和传输层</p>
+<p>高层协议</p>
+<p>◆处理用户服务和各种应用请求，包括会话层、表示层和应用层</p>
+<h3 id="第一层：物理层"><a href="#第一层：物理层" class="headerlink" title="第一层：物理层"></a>第一层：物理层</h3><p>作用<br>规定了通信设备的机械的、电气的、功能的和过程的特性</p>
+<p>插件的规格尺寸<br>引脚数量和线序情况<br>信号电平的大小<br>阻抗匹配线缆<br>物理介质</p>
+<p>◆建立、维护和拆除物理链路连接</p>
+<p>典型物理层的媒体和连接器<br>    同轴电缆、T型接头、光纤、双绞线、中继器、集线器等；</p>
+<p>令常见物理层标准（介质与速率）<br>RJ-45标准、 EIA/TIA RS-232<br>EIA/TIA RS-449</p>
+<h3 id="第二层：数据链路层"><a href="#第二层：数据链路层" class="headerlink" title="第二层：数据链路层"></a>第二层：数据链路层</h3><p>作用：</p>
+<p>◆物理寻址，网络拓扑，线路规章等<br>◆错误检测和通告（但不纠错）<br>将比特聚成帧进行传输<br>◆流量控制（可选）</p>
+<p>寻址机制：<br>◆使用数据接收设备的硬件地址（物理地址）寻址（如MAC地址）</p>
+<p>曲型数据链路层设备：<br>网卡、网桥和交换机</p>
+<p>数据链路层协议：<br>◆ARP、RARP<br>SDLC、HDLC. PPP STP</p>
+<p><strong>第二层：以太网协议标准（两个子层）</strong></p>
+<p>LLC</p>
+<p>MAC</p>
+<h3 id="第三层：网络层"><a href="#第三层：网络层" class="headerlink" title="第三层：网络层"></a>第三层：网络层</h3><p>作用：<br>◆逻辑寻址<br>◆路径选择</p>
+<p>寻址机制:<br>◆使用网络层地址进行寻址（如P地址）</p>
+<p>网络层典型设备:<br>◆路由器<br>◆三层交换机</p>
+<h3 id="第四层：传输层"><a href="#第四层：传输层" class="headerlink" title="第四层：传输层"></a>第四层：传输层</h3><p>作用:<br>◆提供端到端的数据传输服务<br>◆建立逻辑连接</p>
+<p>寻址机制:<br>◆应用程序的界面端口（如端口号）</p>
+<p>传输层协议:<br>◆TCP<br>◆ UDP SPX</p>
+<h3 id="第五层：会话层"><a href="#第五层：会话层" class="headerlink" title="第五层：会话层"></a>第五层：会话层</h3><p>作用:<br>◆不同应用程序的数据隔离<br>◆会话建立，维持，终止<br>◆同步服务<br>◆会话控制（单向或双向）</p>
+<h3 id="第六层：表示层"><a href="#第六层：表示层" class="headerlink" title="第六层：表示层"></a>第六层：表示层</h3><p>作用:</p>
+<p>数据格式表示<br>协议转换<br>字符转换<br>数据加密解密<br>数据压缩等</p>
+<p>表示层数据格式:</p>
+<p>ASCIL. MPEG. TIFF GIF JPEG</p>
+<h3 id="第七层：应用层"><a href="#第七层：应用层" class="headerlink" title="第七层：应用层"></a>第七层：应用层</h3><p>◆作用:</p>
+<p>◆应用接口<br>◆网络访问流处理<br>◆流控<br>◆错误恢复<br>◆应用层协议<br>FTP Telnet Http Snmp<br>SMTP DNS</p>
+<h3 id="OSI模型特点"><a href="#OSI模型特点" class="headerlink" title="OSI模型特点"></a>OSI模型特点</h3><p><img src="https://img.mvpxt.cn/3.png" srcset="/img/loading.gif" alt="3"></p>
+<h3 id="OSI安全体系结构"><a href="#OSI安全体系结构" class="headerlink" title="OSI安全体系结构"></a>OSI安全体系结构</h3><p>目标</p>
+<p>◆保证异构计算机进程与进程之<br>间远距离交换信息的安全</p>
+<p>五类安全服务<br>◆鉴别服务、访问控制服务、数<br>据完整性服务、数据保密性服<br>务和抗抵赖服务</p>
+<p>八种安全机制<br>◆加密、数据签名、访问控制<br>数据完整性、鉴别交换、业务<br>流填充、路由控制和公正</p>
+<hr>
+<h2 id="知识子域2-TCP-IP协议模型-1"><a href="#知识子域2-TCP-IP协议模型-1" class="headerlink" title="知识子域2-TCP/IP协议模型"></a>知识子域2-TCP/IP协议模型</h2><p><img src="https://img.mvpxt.cn/4.png" srcset="/img/loading.gif" alt="4"></p>
+<h3 id="网络接口层"><a href="#网络接口层" class="headerlink" title="网络接口层"></a>网络接口层</h3><p><strong>主要协议</strong></p>
+<p>​    ARP</p>
+<p>​    RARP</p>
+<p><strong>安全问题</strong></p>
+<p>损坏：自然灾害、动物破坏、老化、误操作<br>千扰：大功率电器电源线路/电磁辐射<br>电磁泄漏：传输线路电磁泄漏<br>欺骗：ARP欺骗<br>嗅探：常见二层协议是明文通信的<br>拒绝服务：mac flooding, arp flooding等</p>
+<h3 id="网络互连层核心协议-IP协议"><a href="#网络互连层核心协议-IP协议" class="headerlink" title="网络互连层核心协议-IP协议"></a>网络互连层核心协议-IP协议</h3><p>IP是TCP/IP协议族中最为核心的协议<br>目前广泛使用的IPv4提供无连接、不可靠的服务</p>
+<p><strong>网络互联层的安全问题</strong><br>◆拒绝服务：分片攻击（ teardrop）例死亡之ping<br>◆欺骗：护P源地址欺骗<br>◆窃听：嗅探<br>◆伪造：|P数据包伪造</p>
+<h3 id="传输层协议-TCP（传输控制协议）"><a href="#传输层协议-TCP（传输控制协议）" class="headerlink" title="传输层协议-TCP（传输控制协议）"></a>传输层协议-TCP（传输控制协议）</h3><p>提供面向连接的、可靠的数据通信服务</p>
+<p>提供可靠性服务</p>
+<p>◆数据包分块、发送接收确认、超时重发、数据校验、数据包排序、控制流量</p>
+<h3 id="应用层协议安全问题"><a href="#应用层协议安全问题" class="headerlink" title="应用层协议安全问题"></a>应用层协议安全问题</h3><p>身份认证简单：口令破解、身份伪造</p>
+<p>明文传输数据：数据泄露、数据伪造</p>
+<p>缺乏数据完整性保护：数据破坏、篡改</p>
+<h3 id="基于TCP-IP协议簇的安全架构"><a href="#基于TCP-IP协议簇的安全架构" class="headerlink" title="基于TCP/IP协议簇的安全架构"></a>基于TCP/IP协议簇的安全架构</h3><p><img src="https://img.mvpxt.cn/5.png" srcset="/img/loading.gif" alt="5"></p>
+<h3 id="IPV6特点"><a href="#IPV6特点" class="headerlink" title="IPV6特点"></a>IPV6特点</h3><p>简化首部的结构，路由器不再做分片处理，减轻路由器的负担。</p>
+<p>支持即插即用，自动分配IP地址</p>
+<p>采用了认证和加密功能。</p>
+<p>多播， mobile IP等也可能被支持。</p>
+<h2 id="知识子域：无线通信安全"><a href="#知识子域：无线通信安全" class="headerlink" title="知识子域：无线通信安全"></a>知识子域：无线通信安全</h2><p><strong>◆无线局域网安全</strong><br>了解无线局域网安全协议WEP、WPA、WPA2、WAP<br>等工作机制及优缺点；<br>◆理解无线局域网安全防护策略。<br><strong>◆蓝牙通信安全</strong><br>了解蓝牙技术面临的保密性、完整性、非授权连接、<br>拒绝服务等安全威胁；<br>理解使用蓝牙的安全措施。<br><strong>◆RFID通信安全</strong><br>◆了解RFID的概念及针对标签、针对读写器和针对信道<br>的攻击方式；<br>◆理解RFID安全防护措施。</p>
+<h3 id="无线局域网安全协议-WEP"><a href="#无线局域网安全协议-WEP" class="headerlink" title="无线局域网安全协议-WEP"></a>无线局域网安全协议-WEP</h3><p><strong>◆提供功能</strong></p>
+<p>◆传输加密<br>◆接入认证（开放式认证、共享密钥认证）</p>
+<p><strong>◆开放式认证系统</strong></p>
+<p>◆通过易于伪造的SSID识别，无保护、任意接入MAC、IP地址控制易于伪造</p>
+<p><strong>共享密钥认证</strong></p>
+<p>◆弱密钥问题<br>◆不能防篡改<br>◆没有提供抵抗重放攻击机制</p>
+<h3 id="无线局域网安全协议-WPA-WPA2"><a href="#无线局域网安全协议-WPA-WPA2" class="headerlink" title="无线局域网安全协议-WPA,WPA2"></a>无线局域网安全协议-WPA,WPA2</h3><p><strong>◆802.11</strong></p>
+<p>◆WPA（80211草案）<br>◆WPA2（80211式）</p>
+<p><strong>◆802.11运行四阶段</strong></p>
+<p>◆发现AP阶段<br>◆80211证阶段<br>◆密钥管理阶段<br>◆安全传输阶段</p>
+<h3 id="WAP无线安全协议"><a href="#WAP无线安全协议" class="headerlink" title="WAP无线安全协议"></a>WAP无线安全协议</h3><p><strong>◆WAP的构成</strong><br>◆WAI，用于用户身份鉴别<br>◆WPI，用于保护传输安全</p>
+<p><strong>◆WAPI的安全优势</strong><br>双向三鉴别（服务器、AP、STA）<br>◆高强度鉴别加密算法</p>
+<h3 id="无线局域网应用安全策略"><a href="#无线局域网应用安全策略" class="headerlink" title="无线局域网应用安全策略"></a>无线局域网应用安全策略</h3><p><strong>管理措施</strong></p>
+<p>组织机构安全策略中包含无线局域网安全管理策略结合业务对无线局域网应用进行评估，制定使用和管理策略</p>
+<p><strong>技术措施</strong></p>
+<p>◆加密、认证及访问控制<br>◆访客隔离<br>◆安全检测措施</p>
+<h3 id="近距离无线通信安全-蓝牙"><a href="#近距离无线通信安全-蓝牙" class="headerlink" title="近距离无线通信安全-蓝牙"></a>近距离无线通信安全-蓝牙</h3><p><strong>◆安全威胁</strong></p>
+<p>◆保密性威胁：密钥生成基于配对的PN<br>◆完整性威胁：未授权设备实施的中间人攻击<br>◆可用性威胁：拒绝服务<br>◆非授权连接</p>
+<p><strong>蓝牙安全应用</strong></p>
+<p>◆蓝牙设备选择：技术上应具备抵抗以上威胁的能力<br>◆蓝牙设备使用：企业应用应建立管理要求</p>
+<h3 id="近距离无线通信安全-RFID"><a href="#近距离无线通信安全-RFID" class="headerlink" title="近距离无线通信安全-RFID"></a>近距离无线通信安全-RFID</h3><p><strong>◆安全威胁</strong><br>针对标签攻击：数据窃取、标签破解及复制<br>◆针对读写器的攻击：拒绝服务、恶意代码<br>◆针对无线信道的攻击：干扰、嗅探</p>
+<p><strong>安全防护</strong><br>◆重要的RFD标签（例如用于身份鉴别），支持K和休<br>眠的标签<br>◆使用高安全加密算法的标签<br>◆涉及资金的应用使用在线核查方式</p>
+<h2 id="知识子域：典型网络攻击与防范"><a href="#知识子域：典型网络攻击与防范" class="headerlink" title="知识子域：典型网络攻击与防范"></a>知识子域：典型网络攻击与防范</h2><p>◆欺骗攻击<br>◆了解IP欺骗、ARP欺骗、DNS欺骗等电子欺骗攻击的实现方式及防护措施。<br>拒绝服务攻击<br>了解 SYN Flood、 UDP Flood、 Teardrop等拒绝服务攻击实现方式；<br>◆了解分布式拒绝服务攻击实现方式及拒绝服务攻击应对策略。</p>
+<h3 id="欺骗攻击"><a href="#欺骗攻击" class="headerlink" title="欺骗攻击"></a>欺骗攻击</h3><h3 id="IP欺骗"><a href="#IP欺骗" class="headerlink" title="IP欺骗"></a>IP欺骗</h3><h3 id="ARP欺骗"><a href="#ARP欺骗" class="headerlink" title="ARP欺骗"></a>ARP欺骗</h3><p>ARP协议实现特点<br>◆ARP协议特点：无状态，无需请求可以应答<br>◆ARP实现：ARP缓存</p>
+<h3 id="DNS欺骗-DNS协议工作过程"><a href="#DNS欺骗-DNS协议工作过程" class="headerlink" title="DNS欺骗-DNS协议工作过程"></a>DNS欺骗-DNS协议工作过程</h3><p>DNS（域名解析协议）：用于将域名解析成IP地址</p>
+<h3 id="拒绝服务攻击"><a href="#拒绝服务攻击" class="headerlink" title="拒绝服务攻击"></a>拒绝服务攻击</h3><p><strong>◆拒绝服务攻击</strong><br>◆让被攻击的系统无法正常进行服务的攻击方式</p>
+<p><strong>◆拒绝服务攻击方式</strong><br>◆利用系统、协议或服务的漏洞<br>◆利用TCP协议实现缺陷<br>◆利用操作系统或应用软件的漏洞目标系统服务资源能力<br>◆利用大量数据挤占网络带宽<br>◆利用大量请求消耗系统性能</p>
+<p><strong>混合型</strong></p>
+<h3 id="典型攻击：SYN-Flood"><a href="#典型攻击：SYN-Flood" class="headerlink" title="典型攻击：SYN Flood"></a>典型攻击：SYN Flood</h3><p>原理：伪造虚假地址连接请求，消耗主机连接数</p>
+<h3 id="拒绝服务攻击-1"><a href="#拒绝服务攻击-1" class="headerlink" title="拒绝服务攻击"></a>拒绝服务攻击</h3><p><strong>◆UDPFlood</strong><br>◆利用UDP协议实现简单、高效，形成流量）冲击</p>
+<p><strong>◆ Teardrop</strong><br>◆构造错误的分片信息，系统重组分片数据时内存计算<br>错误，导致协议栈崩溃</p>
+<h3 id="分布式拒绝服务攻击（DDoS）"><a href="#分布式拒绝服务攻击（DDoS）" class="headerlink" title="分布式拒绝服务攻击（DDoS）"></a>分布式拒绝服务攻击（DDoS）</h3><p><img src="https://img.mvpxt.cn/6.png" srcset="/img/loading.gif" alt="6"></p>
+<p><strong>◆管理防御</strong><br>◆业务连续性计划（组织共同承担，应对DoS攻击）<br>协调机制（运营商、公安部门、专家团队）</p>
+<p><strong>技术防御</strong><br>◆安全设备（防火墙、抗DoS设备）<br>◆增强网络带宽<br>◆自身强壮性（风险评估、补丁、安全加固、资源控制</p>
+<p><strong>◆监测防御</strong><br>◆应急响应（构建监测体系）</p>
+<h2 id="知识子域5-网络安全防护技术-1"><a href="#知识子域5-网络安全防护技术-1" class="headerlink" title="知识子域5-网络安全防护技术"></a>知识子域5-网络安全防护技术</h2><p><strong>◆边界安全防护</strong><br>了解防火墙、安全隔离与信息交换系统的实现技术、<br>部署方式、作用及局限性；<br>◆了解PS、UTM、防病毒网关等边界安全防护技术的概</p>
+<p><strong>◆检测与审计</strong><br>了解入侵检测系统、安全审计的作用、分类、实现技<br>术、部署方式及应用上的局限性；</p>
+<p><strong>◆接入管理</strong><br>了解VPN的作用、关键技术及应用领域；<br>了解网络准入控制的作用。</p>
+<h3 id="边界安全防护-防火墙"><a href="#边界安全防护-防火墙" class="headerlink" title="边界安全防护-防火墙"></a>边界安全防护-防火墙</h3><p>◆控制：在网络连接点上建立一个安全控制点，对进出数据进行限制</p>
+<p>◆隔离：将需要保护的网络与不可信任网络进行隔离，隐藏信息并进行安全防护</p>
+<p>◆记录：对进出数据进行检查，记录相关信息</p>
+<h3 id="防火墙主要技术"><a href="#防火墙主要技术" class="headerlink" title="防火墙主要技术"></a>防火墙主要技术</h3><p><strong>静态包过滤</strong><br>◆依据数据包的基本标记来控制数据包<br>◆技术逻辑简单、易于实现，处理速度快<br>◆无法实现对应用层信息过滤处理，配置较复杂</p>
+<p><strong>应用代理</strong><br>◆连接都要通过防火墙进行转发<br>◆提供NAT，隐藏内部网络地址</p>
+<p><strong>状态检测</strong><br>◆创建状态表用于维护连接，安全性高<br>◆安全性高但对性能要求也高<br>◆适应性好，对用户、应用程序诱明</p>
+<h3 id="防火墙的部署"><a href="#防火墙的部署" class="headerlink" title="防火墙的部署"></a>防火墙的部署</h3><p><strong>◆防火墙的部署位置</strong></p>
+<p>◆可信网络与不可信网络之间</p>
+<p>◆不同安全级别网络之间</p>
+<p>◆两个需要隔离的区域之间</p>
+<p><strong>◆防火墙的部署方式</strong></p>
+<p>◆单防火墙（无DMZ）部署方式</p>
+<p>◆单防火墙（DMZ）部署方式</p>
+<p>◆双防火墙部署方式</p>
+<h3 id="其他边界安全防护"><a href="#其他边界安全防护" class="headerlink" title="其他边界安全防护"></a>其他边界安全防护</h3><p><strong>◆物理隔离与交换系统（网闸）</strong><br>◆外部处理单元、内部处理单元、中间处理单元<br>◆断开内外网之间的会话（物理隔离、协议隔离）<br>◆同时集合了其他安全防护技术</p>
+<p><strong>◆其他网络安全防护技术</strong><br>◆IPS<br>◆防病毒网关<br>◆UTM</p>
+<h3 id="检测与审计-入侵检测"><a href="#检测与审计-入侵检测" class="headerlink" title="检测与审计-入侵检测"></a>检测与审计-入侵检测</h3><p><strong>入侵检测系统的作用</strong><br>◆主动防御，防火墙的重要补充<br>◆构建网络安全防御体系重要环节</p>
+<p><strong>入侵检测系统功能</strong><br>◆发现并报告系统中未授权或违反安全策略行为<br>◆为网络安全策略的制定提供指导</p>
+<h3 id="入侵检测系统"><a href="#入侵检测系统" class="headerlink" title="入侵检测系统"></a>入侵检测系统</h3><p><strong>分类</strong></p>
+<p>网络入侵检测</p>
+<p>主机入侵检测</p>
+<p><strong>检测技术</strong></p>
+<p>误用检测</p>
+<p>异常检测</p>
+<p><strong>部署</strong></p>
+<p><strong>局限性</strong></p>
+<h3 id="安全审计系统"><a href="#安全审计系统" class="headerlink" title="安全审计系统"></a>安全审计系统</h3><p><strong>概念：</strong><br>按照一定的安全策略，对系统日志、网络数据、用户活动、环境状况进行检查，以发现系统漏洞、违规操作等行为的安全设备。部署</p>
+<p><strong>分类</strong><br>◆网络安全审计<br>◆和主机安全审计</p>
+<h3 id="接入管理VPN"><a href="#接入管理VPN" class="headerlink" title="接入管理VPN"></a>接入管理VPN</h3><p><strong>虚拟专用网络（ Virtual Private network,VPN）</strong><br>◆利用隧道技术，在公共网络中建立一个虚拟的、专用<br>的安全网络通道</p>
+<p><strong>VPN实现技术</strong><br>◆隧道技术<br>二层隧道：PPTP、L2F、L2TP<br>◆IPSEC<br>◆SSL<br>◆密码技术</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p><strong>◆OSI七层模型</strong><br><strong>◆TCP/P协议安全</strong><br><strong>◆典型网络攻击与防范</strong><br>电子欺骗（ARP欺骗、IP欺骗、DNS欺骗）<br>◆拒绝服务攻击（ SYN Flood、 UDP Flood、 Teardrop）与分布式拒绝服务攻击<br>◆<strong>网络安全设备</strong><br>◆防火墙、网闸、|DS、VPN等</p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/NISP/">NISP</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/NISP%E4%BA%8C%E7%BA%A7/">NISP二级</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/27/nisp5/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">nisp（5）操作系统安全与系统攻击</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/27/nisp3/">
+                        <span class="hidden-mobile">nisp（3）物理环境安全</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "awU93jjvUzCS1tvQr11dtYol-gzGzoHsz",
+          app_key: "X2NMIJH8dFYQ9eqkVHeV9aRa",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    }
+    createObserver(loadValine, 'vcomments');
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
+
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'random',
+      theme: '#0099cc',
+      preload: 'none',
+      audio: [{"name":"Pride","volume":"0.7","artist":"遥海","url":"https://img.mvpxt.cn/%E9%81%A5%E6%B5%B7%20-%20Pride.mp3","cover":"http://img.mvpxt.cn/Pride.jpg"},{"name":"Used to","volume":"0.7","artist":"James Carter","url":"https://img.mvpxt.cn/James%20Carter%2CKaii%20-%20Used%20To.flac","cover":"http://img.mvpxt.cn/Used%20to.jpg"},{"name":"Brick","volume":"0.7","artist":"Ben Folds Five","url":"https://img.mvpxt.cn/%E5%A4%A7%E6%A9%8B%E3%83%88%E3%83%AA%E3%82%AA%20-%20Brick.mp3","cover":"https://img.mvpxt.cn/Brick"},{"name":"PLASTIC","volume":"0.7","artist":"sakehands","url":"https://img.mvpxt.cn/sakehands%20-%20PLASTIC.mp3","cover":"https://img.mvpxt.cn/PLASTIC.jpg"},{"name":"Galaxy Voices","volume":"0.7","artist":"Cauzmonote","url":"https://img.mvpxt.cn/videoplayback.m4a","cover":"https://img.mvpxt.cn/videoplay.png"}]
+    });
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>MVPXT</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://www.mvpxt.cn/" target="_blank" rel="nofollow noopener">
+        <span>过你想要的生活</span></a>
+        <div class="xiaojiu">
+          <span id="xiaojiu_container_site_pv" style="display: none;">本站已经被访问
+            <span id="xiaojiu_value_site_pv" style="margin: 0 3px;">  </span>次啦</span>
+            <span id="xiaojiu_container_site_uv" style="display: none;">已经有
+            <span id="xiaojiu_value_site_uv" style="margin: 0 3px;"> </span>个小伙伴来过啦</span>
+          </div>
+
+          <div class="date">
+            <span id="timeDate">载入天数...</span>
+            <span class="times" id="times">载入时分秒...
+            </span>
+            <!--<img src=/img/dibu.jpg>-->
+            <script>
+              var now = new Date();
+              function createtime() {
+                var grt = new Date("02/04/2020 00:00:00");//此处修改你的建站时间或者网站上线时间
+                now.setTime(now.getTime() + 250);
+                days = (now - grt) / 1000 / 60 / 60 / 24;
+                dnum = Math.floor(days);
+                hours = (now - grt) / 1000 / 60 / 60 - (24 * dnum);
+                hnum = Math.floor(hours);
+                if (String(hnum).length == 1) {
+                  hnum = "0" + hnum;
+                }
+                minutes = (now - grt) / 1000 / 60 - (24 * 60 * dnum) - (60 * hnum);
+                mnum = Math.floor(minutes);
+                if (String(mnum).length == 1) {
+                  mnum = "0" + mnum;
+                }
+                seconds = (now - grt) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+                snum = Math.round(seconds);
+                if (String(snum).length == 1) {
+                  snum = "0" + snum;
+                }
+                document.getElementById("timeDate").innerHTML = "本站已经摇摇晃晃运行了&nbsp" + dnum + "&nbsp天";
+                document.getElementById("times").innerHTML = hnum + "&nbsp小时&nbsp" + mnum + "&nbsp分&nbsp" + snum + "&nbsp秒";
+              }
+              setInterval("createtime()", 250);
+            </script>
+          </div>
+        
+    </div>
+    
+
+    
+  <!-- 备案信息 -->
+  <div class="beian">
+    <a href="http://beian.miit.gov.cn/" target="_blank"
+       rel="nofollow noopener">豫ICP备20003563号-1</a>
+    
+  </div>
+
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    function typing(id, title){
+        var typed = new Typed('#' + id, {
+            strings: [
+              '  ',
+              title + "&nbsp;",
+            ],
+            cursorChar: "_",
+            typeSpeed: 65,
+            loop: false,
+        });
+        typed.stop();
+        $(document).ready(function () {
+            $(".typed-cursor").addClass("h2");
+            typed.start();
+        });
+    }
+    
+        typing("subtitle", "nisp（4）网络通信安全")
+    
+  </script>
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "left",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+  
+  
+    <script>
+      !function (e, t, a) {
+        function r() {
+          for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");
+          requestAnimationFrame(r)
+        }
+
+        function n() {
+          var t = "function" == typeof e.onclick && e.onclick;
+          e.onclick = function (e) {
+            t && t(), o(e)
+          }
+        }
+
+        function o(e) {
+          var a = t.createElement("div");
+          a.className = "heart", s.push({
+            el: a,
+            x: e.clientX - 5,
+            y: e.clientY - 5,
+            scale: 1,
+            alpha: 1,
+            color: c()
+          }), t.body.appendChild(a)
+        }
+
+        function i(e) {
+          var a = t.createElement("style");
+          a.type = "text/css";
+          try {
+            a.appendChild(t.createTextNode(e))
+          } catch (t) {
+            a.styleSheet.cssText = e
+          }
+          t.getElementsByTagName("head")[0].appendChild(a)
+        }
+
+        function c() {
+          return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+        }
+
+        var s = [];
+        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {
+          setTimeout(e, 1e3 / 60)
+        }, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()
+      }(window, document);
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+<script src="https://api.lzwzw.cn/public/js/xiaojiu.js"></script>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"rect":{"opacity":1},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

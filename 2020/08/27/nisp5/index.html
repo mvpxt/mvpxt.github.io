@@ -19,7 +19,7 @@
   <meta name="description" content="划船不用桨，一生全靠浪">
   <meta name="author" content="XT">
   <meta name="keywords" content="">
-  <title>标签 - XT-Blog</title>
+  <title>nisp（5）操作系统安全与系统攻击 - XT-Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -203,8 +203,8 @@
           
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-06-26 18:58">
-      2020年6月26日 晚上
+    <time datetime="2020-08-27 23:35">
+      2020年8月27日 晚上
     </time>
   </div>
 
@@ -214,7 +214,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      162 字
+      1.7k 字
     </span>
   
 
@@ -224,7 +224,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      31
        分钟
     </span>
   
@@ -269,45 +269,68 @@
               </p>
             
             <article class="markdown-body">
-              <h4 id="便签"><a href="#便签" class="headerlink" title="便签"></a>便签</h4><p>在 markdown 中加入如下的代码来使用便签：</p>
-<pre><code class="hljs markdown">&#123;% note success %&#125;
-文字 或者 <span class="hljs-code">`markdown`</span> 均可
-&#123;% endnote %&#125;</code></pre>
-
-<p>或者使用 HTML 形式：</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"note note-primary"</span>&gt;</span>标签<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></code></pre>
-
-<p>可选便签：</p>
-<p class="note note-primary">primary</p>
-
-<p class="note note-secondary">secondary</p>
-
-<p class="note note-success">success</p>
-
-<p class="note note-danger">danger</p>
-
-<p class="note note-warning">warning</p>
-
-<p class="note note-info">info</p>
-
-<p class="note note-light">light</p>
-
-<p class="note note-info">WARNING
-    使用时 `{% note primary %}` 和 `{% endnote %}` 需单独一行，否则会出现问题</p>
-
-
-
-<h4 id="行内标签"><a href="#行内标签" class="headerlink" title="行内标签"></a>行内标签</h4><p>在 markdown 中加入如下的代码来使用 Label：</p>
-<pre><code class="hljs markdown">&#123;% label primary @text %&#125;</code></pre>
-
-<p>或者使用 HTML 形式：</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"label label-primary"</span>&gt;</span>Label<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></code></pre>
-
-<p>可选 Label：</p>
-<p>primary default info success warning danger</p>
-<p>WARNING</p>
-<p>若使用 <code><span class="label label-primary">text</span></code>，text 不能以 @ 开头</p>
-<p>官方文档链接：<a href="https://hexo.fluid-dev.com/docs/guide/#tag-插件" target="_blank" rel="noopener">https://hexo.fluid-dev.com/docs/guide/#tag-%E6%8F%92%E4%BB%B6</a></p>
+              <h1 id="第五章-操作系统安全与系统攻击"><a href="#第五章-操作系统安全与系统攻击" class="headerlink" title="第五章 操作系统安全与系统攻击"></a>第五章 操作系统安全与系统攻击</h1><h2 id="知识子域1：操作系统安全"><a href="#知识子域1：操作系统安全" class="headerlink" title="知识子域1：操作系统安全"></a>知识子域1：操作系统安全</h2><h2 id="知识子域2：操作系统安全"><a href="#知识子域2：操作系统安全" class="headerlink" title="知识子域2：操作系统安全"></a>知识子域2：操作系统安全</h2><h2 id="知识子域3：信息收集与系统攻击"><a href="#知识子域3：信息收集与系统攻击" class="headerlink" title="知识子域3：信息收集与系统攻击"></a>知识子域3：信息收集与系统攻击</h2><h2 id="1、操作系统安全"><a href="#1、操作系统安全" class="headerlink" title="1、操作系统安全"></a>1、操作系统安全</h2><p>操作系统安全机制</p>
+<p>操作系统安全配置</p>
+<p>操作系统安全目标</p>
+<p>实现目标的安全机制</p>
+<p>操作系统的标识</p>
+<p>操作系统的鉴别</p>
+<h3 id="windows的主体标识"><a href="#windows的主体标识" class="headerlink" title="windows的主体标识"></a>windows的主体标识</h3><p><strong>安全标识符（SID)</strong></p>
+<p>​    安全主体的代表（标识用户、组、计算机、服务等的唯—编码）<br>​    </p>
+<p>​    安全标识符的组成包括：大写字母S、修订级别、颁发机构、第一个颁发子机构、其余颁发机构和相对标识符等。</p>
+<h3 id="Windows的用户信息管理"><a href="#Windows的用户信息管理" class="headerlink" title="Windows的用户信息管理"></a>Windows的用户信息管理</h3><p><strong>用户数据库</strong></p>
+<p>◆在系统中文件体现（ C:\windows \system32\ iconfig\ ISAM）<br>◆密码散列等信息存储在注册表中，格式加密<br>◆ Windows密码散列值示例（LM-Hash）例子：例子    例子： Administrator：500：C8825DB10F2590EAAAD3B435B51404EE：683020925c5D8569c23AA724774CE6CC</p>
+<p>​    </p>
+<p><strong>信息保护</strong></p>
+<p>SAM文件运行期锁定，无法拷贝，剪切</p>
+<p>注册表数据操作权限system，依靠系统服务进行访问</p>
+<h3 id="Windows系统的鉴别"><a href="#Windows系统的鉴别" class="headerlink" title="Windows系统的鉴别"></a>Windows系统的鉴别</h3><p><strong>本地鉴别：本地鉴别组件（GINA,LSA）</strong></p>
+<p>Winlogon.exe，一个安全进程，用于加载登录组件及<br>用户交互图形界面</p>
+<p>GNA（图形化识别和验证），提供能够对用户身份进<br>行识别和验证的函数本地安全授权（LSA），从 Winlogon. exe中获取用户的账号和密码，然后经过密码技术处理得到口令散列，并交给SAM服务与存储在用户数据库中的散列进行对比</p>
+<p><strong>远程登录鉴别协议</strong><br>◆SMB（ Server Message Block）：口令明文传输<br>◆LM（ LAN Manager）：口令哈希传输，强度低<br>◆NTLM（ NT LAN Manager）：提高口令散列加密强度、挑战响应机制</p>
+<p>Kerberos：为分布网络提供单一身份验证</p>
+<p><strong>远程鉴别组件</strong><br>◆调用SAM服务</p>
+<h3 id="Linux系统的标识"><a href="#Linux系统的标识" class="headerlink" title="Linux系统的标识"></a>Linux系统的标识</h3><p><strong>◆安全主体</strong><br>◆用户标识符（UID）<br>组标识符（GID）</p>
+<p><strong>用户标识符（UID）</strong><br>◆UID是 Linux/Uinx系统中唯一的用户标识，在系统内部<br>管理进程和文件保护时使用UID字段</p>
+<p><strong>组标识号（Group ID）</strong><br>◆GID是具有相似属性的多个用户可以被分配到同一个组内，每个组都有自己的组名，且以自己的组标识号相区分。</p>
+<p>Linux用户信息管理</p>
+<p><strong>◆用户账户文件（etc/passwd）</strong><br>◆存储用户的登录名、登录的散列、用户ID、登录后使<br>用的She等信息<br>◆使用不可逆DES算法加密的用户密码散列（早期）<br>文本格式、全局可读<br><strong>数据范例</strong><br>demo x：523:100：J demo:/home/demo:/bin/sh<br><strong>◆数据格式</strong><br>name:coded-passwd:UID:GID:userinfo:homedirectory shell</p>
+<p>linux用户信息管理</p>
+<p>影子文件</p>
+<p>/etc/shadow</p>
+<p>储存存放用户密码散列，面管理信息等</p>
+<p>文本格式，仅对root可读可写</p>
+<p>数据范例</p>
+<p>◆#root:$1$acQMcF9:13402:09999:7:::<br>◆数据格式<br>name:passwd:lastchg:min:max:warn:inactive:expire:flag</p>
+<p>linux的系统的鉴别</p>
+<p>口令鉴别</p>
+<p>本地登录</p>
+<p>远程登录（telnet，FTP等）</p>
+<p>Windows的访问控制</p>
+<p><strong>安全对象</strong></p>
+<p>​    文件，目录，注册表项，动态目录对象、内核对象（如事件、信号量和互斥）、服务、线程、进程、Windows工作站和桌面等。</p>
+<p><strong>访问控制机制</strong></p>
+<p>◆访问控制列表（ACL），仅NTFS文件系统支持<br>◆访问令牌（包含S|D和特权列表），以用户身份运行的进程都拥有该令牌的一个拷贝<br>◆授权管理器，用来实现第三方访问控制机制，作为系<br>统访问机制的补充</p>
+<h3 id="Windows的访问控制"><a href="#Windows的访问控制" class="headerlink" title="Windows的访问控制"></a>Windows的访问控制</h3><p><strong>访问控制列表（ Access Control list,ACL）</strong></p>
+<p>仅NTFS文件系统支持<br>权限存储流文件系统中<br>自主访问控制<br>灵活性高，安全性不高</p>
+<h3 id="Windows的特权管理"><a href="#Windows的特权管理" class="headerlink" title="Windows的特权管理"></a>Windows的特权管理</h3><p><strong>访问令牌</strong><br>◆包含S|D和特权列表<br>◆以用户身份运行的进程都拥有该令牌的一个拷贝</p>
+<p><strong>用户帐户控制（UAC）</strong><br>◆完全访问令牌<br>◆标准受限访问令牌</p>
+<h3 id="linux的访问控制"><a href="#linux的访问控制" class="headerlink" title="linux的访问控制"></a>linux的访问控制</h3><p><strong>安全对象</strong><br>文件，万物皆文件</p>
+<p><strong>访问控制机制</strong><br>◆访问控制列表（ACL），需要文件系统格式支持<br>◆权限类型：读、写、执行<br>◆权限表示方式：模式位（UGO管理机制）</p>
+<h3 id="访问控制-权限模式"><a href="#访问控制-权限模式" class="headerlink" title="访问控制-权限模式"></a>访问控制-权限模式</h3><p>文件/目录权限的模式位表示法</p>
+<p><img src="https://img.mvpxt.cn/7.png" srcset="/img/loading.gif" alt="7"></p>
+<h3 id="Linux的访问控制"><a href="#Linux的访问控制" class="headerlink" title="Linux的访问控制"></a>Linux的访问控制</h3><p><strong>特权管理</strong></p>
+<p>◆ Linux继承了传统Unⅸ的特权管理机制，即基于超级用<br>户的特权管理机制。普通用户没有任何特权，而超级用户拥有系统内的所有特权。<br>◆限制对root使用，普通用户需要超级用户权限通过su.sudo短时间获得root权限。<br>◆Suid位：任何用户执行文件运行权限都为文件所有的权限<br>r-s–x–x 1 root root 10704 Apr 15 2002/usr/bin/passwd<br>^SUID程序</p>
+<h3 id="信道保护"><a href="#信道保护" class="headerlink" title="信道保护"></a>信道保护</h3><p><strong>正常信道的保护</strong><br>◆可信通路（ Trusted Path）<br>◆安全键（SAK）</p>
+<p><strong>隐蔽信道保护</strong><br>◆隐蔽信道指利用系统中那些本来不是用于通信的系统<br>资源绕过强制存取控制迸行非法通信的—种机制</p>
+<p>发现隐蔽信道</p>
+<p>◆共同访问权限<br>◆共同修改权限<br>◆接收进程可检资源的改变，而发送进程有权限改变<br>◆某种机制可启动通信并改变通信事件的顺序</p>
+<h3 id="安全审计"><a href="#安全审计" class="headerlink" title="安全审计"></a>安全审计</h3><p>◆对系统中有关安全的活动进行记录、检查以及审<br>核，一般是一个独立的过程<br>◆安全审计目标<br>一是可以对受损的系统提供信息帮助以进行损失评估<br>和系统恢复；<br>二是可以详细记录与系统安全有关的行为，从而对这<br>些行为进行分析，发现系统中的不安全的因素。</p>
+<p>◆操作系统的审计记录·般应包括如下信息：<br>◆事件的日期和时间、代表正在进行事件的主体的唯一<br>标识符、事件的类型、事件的成功与失败等。对于标<br>识与鉴别事件，审计记录应该记录下事件发生的源地<br>点（如终端标识符）。</p>
+<p> <strong>Windows系统的安全审计</strong><br>◆ Windows日志（系统、应用程序、安全）<br>◆应用程序和服务日志（|S日志等）<br><strong>Linux系统的安全审计</strong><br>◆连接时间日志<br>◆进程统计<br>◆错误日志<br>◆应用程序日志</p>
+<h3 id="操作系统安全配置"><a href="#操作系统安全配置" class="headerlink" title="操作系统安全配置"></a>操作系统安全配置</h3><p><strong>安装软件来源</strong><br>◆官方渠道<br>◆可靠镜像（哈希）</p>
+<p><strong>安装</strong><br>◆分区设置，不要只设置一个分区<br>◆安装最新安全补丁或最新版本软件<br>◆最小化部署，明确需要的功能和组件，不需要的都关闭</p>
+<h3 id="操作系统安全配置-1"><a href="#操作系统安全配置-1" class="headerlink" title="操作系统安全配置"></a>操作系统安全配置</h3><p>帐户安全设置<br>帐户策略设置<br>帐户安全选项设置</p>
 
             </article>
             <hr>
@@ -317,7 +340,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/">主题配置</a>
+                      <a class="hover-with-bg" href="/categories/NISP/">NISP</a>
                     
                   </div>
                 
@@ -325,7 +348,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/">主题配置</a>
+                      <a class="hover-with-bg" href="/tags/NISP%E4%BA%8C%E7%BA%A7/">NISP二级</a>
                     
                   </div>
                 
@@ -338,18 +361,12 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/08/10/NISP%E4%BA%8C%E7%BA%A71/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">NISP二级考证记录（1）</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/06/26/zhutiyouhua/">
-                        <span class="hidden-mobile">主题优化</span>
+                      <a href="/2020/08/27/nisp4/">
+                        <span class="hidden-mobile">nisp（4）网络通信安全</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -607,7 +624,7 @@
         });
     }
     
-        typing("subtitle", "标签")
+        typing("subtitle", "nisp（5）操作系统安全与系统攻击")
     
   </script>
 
