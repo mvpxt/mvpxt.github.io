@@ -19,7 +19,7 @@
   <meta name="description" content="划船不用桨，一生全靠浪">
   <meta name="author" content="XT">
   <meta name="keywords" content="">
-  <title>主题优化 - XT-Blog</title>
+  <title>渗透测试流程 - XT-Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -203,8 +203,8 @@
           
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-06-26 18:58">
-      2020年6月26日 晚上
+    <time datetime="2020-09-27 21:04">
+      2020年9月27日 晚上
     </time>
   </div>
 
@@ -214,7 +214,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.4k 字
+      2.6k 字
     </span>
   
 
@@ -224,7 +224,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      22
+      26
        分钟
     </span>
   
@@ -264,291 +264,246 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年6月26日 晚上
+                  本文最后更新于：2020年9月27日 晚上
                 
               </p>
             
             <article class="markdown-body">
-              <p>​    关于优化，我有话要说，主题优化除了官方给的优化外，其它基本都是靠九师傅帮忙建好的，超级感谢九师傅的帮助，九师傅NB！    </p>
-<p>​    九师傅的blog里面有很多好玩的东西，建议去看看。</p>
-<p>​    地址：<a href="https://blog.lzwzw.cn/" target="_blank" rel="noopener">https://blog.lzwzw.cn/</a></p>
-<p>然后记录一下优化过程：</p>
-<h3 id="尾部"><a href="#尾部" class="headerlink" title="尾部"></a>尾部</h3><p>效果：</p>
-<p><img src="https://img.mvpxt.cn/%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%961.png" srcset="/img/loading.gif" alt="01"></p>
-<p>​    </p>
-<hr>
-<p><img src="https://img.mvpxt.cn/%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%962.png" srcset="/img/loading.gif" alt="02"></p>
-<p>这部分使用的是九师傅的接口，九师傅的文章链接：<a href="https://blog.lzwzw.cn/2020/06/25/主题修改/实现网站流量统计(前端埋点)/" target="_blank" rel="noopener">https://blog.lzwzw.cn/2020/06/25/%E4%B8%BB%E9%A2%98%E4%BF%AE%E6%94%B9/%E5%AE%9E%E7%8E%B0%E7%BD%91%E7%AB%99%E6%B5%81%E9%87%8F%E7%BB%9F%E8%AE%A1(%E5%89%8D%E7%AB%AF%E5%9F%8B%E7%82%B9)/</a></p>
-<hr>
-<p><img src="https://img.mvpxt.cn/%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%963.png" srcset="/img/loading.gif" alt="03"></p>
-<p>这部分的源码：</p>
-<pre><code class="hljs ejs">&lt;div class&#x3D;&quot;date&quot;&gt;
-            &lt;span id&#x3D;&quot;timeDate&quot;&gt;载入天数...&lt;&#x2F;span&gt;
-            &lt;span class&#x3D;&quot;times&quot; id&#x3D;&quot;times&quot;&gt;载入时分秒...
-            &lt;&#x2F;span&gt;
-            &lt;img src&#x3D;&#x2F;img&#x2F;sanjiao.gif onload&#x3D;&#39;if (this.width&gt;34 || this.height&gt;34) if (this.width&#x2F;this.height&gt;34&#x2F;34) this.width&#x3D;34; else this.height&#x3D;34;&#39;&gt;
-            &lt;script&gt;
-              var now &#x3D; new Date();
-              function createtime() &#123;
-                var grt &#x3D; new Date(&quot;02&#x2F;04&#x2F;2020 00:00:00&quot;);&#x2F;&#x2F;此处修改你的建站时间或者网站上线时间
-                now.setTime(now.getTime() + 250);
-                days &#x3D; (now - grt) &#x2F; 1000 &#x2F; 60 &#x2F; 60 &#x2F; 24;
-                dnum &#x3D; Math.floor(days);
-                hours &#x3D; (now - grt) &#x2F; 1000 &#x2F; 60 &#x2F; 60 - (24 * dnum);
-                hnum &#x3D; Math.floor(hours);
-                if (String(hnum).length &#x3D;&#x3D; 1) &#123;
-                  hnum &#x3D; &quot;0&quot; + hnum;
-                &#125;
-                minutes &#x3D; (now - grt) &#x2F; 1000 &#x2F; 60 - (24 * 60 * dnum) - (60 * hnum);
-                mnum &#x3D; Math.floor(minutes);
-                if (String(mnum).length &#x3D;&#x3D; 1) &#123;
-                  mnum &#x3D; &quot;0&quot; + mnum;
-                &#125;
-                seconds &#x3D; (now - grt) &#x2F; 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
-                snum &#x3D; Math.round(seconds);
-                if (String(snum).length &#x3D;&#x3D; 1) &#123;
-                  snum &#x3D; &quot;0&quot; + snum;
-                &#125;
-                document.getElementById(&quot;timeDate&quot;).innerHTML &#x3D; &quot;本站已经摇摇晃晃运行了&amp;nbsp&quot; + dnum + &quot;&amp;nbsp天&quot;;
-                document.getElementById(&quot;times&quot;).innerHTML &#x3D; hnum + &quot;&amp;nbsp小时&amp;nbsp&quot; + mnum + &quot;&amp;nbsp分&amp;nbsp&quot; + snum + &quot;&amp;nbsp秒&quot;;
-              &#125;
-              setInterval(&quot;createtime()&quot;, 250);
-            &lt;&#x2F;script&gt;
-          &lt;&#x2F;div&gt;</code></pre>
+              <h1 id="渗透测试流程"><a href="#渗透测试流程" class="headerlink" title="渗透测试流程"></a>渗透测试流程</h1><h3 id="1、专用术语介绍"><a href="#1、专用术语介绍" class="headerlink" title="1、专用术语介绍"></a>1、专用术语介绍</h3><p>​    1.脚本(asp、php、jsp）</p>
+<p>​    2.html (css、js、html)</p>
+<p>​    3.HTTP协议</p>
+<p>​    4.CMS (B/S）</p>
+<p>​    5.MD5</p>
+<p>​    6.肉鸡、抓鸡、跳板</p>
+<p>​    7.一司话木马、小马、大马</p>
+<p>​    8.webshell、提权、后门</p>
+<p>​    9.源码打包、脱裤</p>
+<p>​    10.嗅探、rookit</p>
+<h3 id="2、渗透测试实施流程"><a href="#2、渗透测试实施流程" class="headerlink" title="2、渗透测试实施流程"></a><strong>2、渗透测试实施流程</strong></h3><p>渗透测试</p>
+<p>模拟恶意黑客的思维方式、技术手段、攻击方法，对计算机网络信息系统进行安全评估的一种测试方法。</p>
+<p>渗透测试项目</p>
+<p>渗透测试人员在获得授权的情况下，在不同的位置（内网、外网等）利用各种手段对某个特定网络信息系统进行测试，以期发现和挖掘系统中存在的漏洞，然后输出渗透测试报告，并提交给系统所有者。</p>
+<h3 id="3、渗透测试实施流程"><a href="#3、渗透测试实施流程" class="headerlink" title="3、渗透测试实施流程"></a>3、渗透测试实施流程</h3><p>渗透测试评估对象</p>
+<p>技术缺陷</p>
+<p>管理漏洞</p>
+<p>业务流程缺陷</p>
+<p>人员意识不足</p>
+<p>……</p>
+<h3 id="4、渗透测试注意事项"><a href="#4、渗透测试注意事项" class="headerlink" title="4、渗透测试注意事项"></a>4、渗透测试注意事项</h3><p>合法</p>
+<p>得到信息系统运营方的正式授权</p>
+<p>得到监管机构的授权</p>
+<p>避免影响业务</p>
+<p>选择测试方法中避免使用具备破坏性的测试方法</p>
+<p>选择非业务高峰时段进行测试</p>
+<p>在与生产系统相同的开发、测试等环境中进行测试</p>
+<p>考虑风险规避</p>
+<p>风险处理计划</p>
+<p>备份及恢复</p>
+<pre><code class="hljs plain">一切都在控制之下，不会对系统造成危害！</code></pre>
 
-<p>将其插入themes\fluid\layout_partial\footer.ejs中你想展示的地方。</p>
-<p>至于gif动图：</p>
-<pre><code class="hljs ejs">&lt;img src&#x3D;&#x2F;img&#x2F;sanjiao.gif onload&#x3D;&#39;if (this.width&gt;34 || this.height&gt;34) if (this.width&#x2F;this.height&gt;34&#x2F;34) this.width&#x3D;34; else this.height&#x3D;34;&#39;&gt;</code></pre>
+<h3 id="5、渗透测试优势和不足"><a href="#5、渗透测试优势和不足" class="headerlink" title="5、渗透测试优势和不足"></a>5、渗透测试优势和不足</h3><p><strong>优势</strong></p>
+<p>一般在真实生产环境或完全模拟真实生产环境上进行测试，因此发现的问题都是真实的</p>
+<p>从攻击者角度进行测试，发现问题可能不被重视甚至不认为是问题，但对于攻击者却很有价值</p>
+<p><strong>不足</strong></p>
+<p>测试只能达到有限的测试点，覆盖率较低</p>
+<p>对测试人员能力有较高要求，技术、知识和经验很重要</p>
+<p>不同能力测试人员测试的效果差异巨大</p>
+<h3 id="6、渗透测试分类"><a href="#6、渗透测试分类" class="headerlink" title="6、渗透测试分类"></a>6、渗透测试分类</h3><p><strong>按测试方式</strong></p>
+<p>黑盒：模拟对信息系统完全没有了解的攻击者，例如外部攻击者（恶意黑客、竞争对手等）</p>
+<p>白盒：模拟对系统非常了解的内部攻击者，例如内部人员、商业间谍等</p>
+<p>灰盒：模拟对系统有一定了解的攻击者，例如合作第三方等</p>
+<p><strong>按测试位置</strong></p>
+<p>外网测试</p>
+<p>内网测试</p>
+<p><strong>按测试对象：</strong></p>
+<p>主机操作系统渗透</p>
+<p>数据库系统渗透</p>
+<p>应用系统渗透</p>
+<p>网络设备渗透</p>
+<h3 id="7、渗透测试黑盒测试"><a href="#7、渗透测试黑盒测试" class="headerlink" title="7、渗透测试黑盒测试"></a>7、渗透测试黑盒测试</h3><p><strong>测试目的</strong></p>
+<p>应对来自外部攻击的能力</p>
+<p><strong>测试内容</strong></p>
+<p>未经许或遗漏的外部访问接口、服务</p>
+<p>缺乏管理的外部访问接口、服务</p>
+<p>信息系统中可被外部利用的缺陷，包括技术缺陷、管理缺陷、业务流程缺陷等</p>
+<p>外部服务应对攻击的性能</p>
+<p>可能存在的信息泄露</p>
+<p>可能存在的数据篡改</p>
+<p>可能存在的外部欺诈</p>
+<p>……</p>
+<h3 id="8、渗透测试白盒测试"><a href="#8、渗透测试白盒测试" class="headerlink" title="8、渗透测试白盒测试"></a>8、渗透测试白盒测试</h3><p><strong>测试目的</strong></p>
+<p>应对内部专业人员攻击的能力</p>
+<p><strong>测试内容</strong></p>
+<p>未经许或遗漏的内部可访问服务及功能</p>
+<p>缺乏管理的内部可访问接口、服务</p>
+<p>内部访问控制缺失的情况</p>
+<p>信息系统中可被内部人员利用的缺陷，包括技术缺陷、管理缺陷、业务流程缺陷等</p>
+<p>可能存在的信息泄露</p>
+<p>可能存在的数据篡改</p>
+<p>可能存在的外部欺诈</p>
+<p>……</p>
+<h3 id="9、渗透测试灰盒测试"><a href="#9、渗透测试灰盒测试" class="headerlink" title="9、渗透测试灰盒测试"></a>9、渗透测试灰盒测试</h3><p><strong>测试目的</strong></p>
+<p>应对来自合作方或内部人员攻击的能力</p>
+<p><strong>测试内容</strong></p>
+<p>与白盒测试类似，但对系统了解程度不及白盒测试人员</p>
+<h3 id="10、实施流程"><a href="#10、实施流程" class="headerlink" title="10、实施流程"></a>10、实施流程</h3><p><img src="https://img.mvpxt.cn/shentou1.png" srcset="/img/loading.gif" alt="shentou1"></p>
+<h3 id="11、项目启动-测试相关事项沟通"><a href="#11、项目启动-测试相关事项沟通" class="headerlink" title="11、项目启动-测试相关事项沟通"></a>11、项目启动-测试相关事项沟通</h3><p>测试对象、范围</p>
+<p>生产环境&amp;测试环境</p>
+<p>业务系统本身、关联系统、依赖系统</p>
+<p>技术评估、管理评估</p>
+<p>物理安全、网络安全、操作系统安全、应用系统、数据库、业务流程</p>
+<p>测试方式</p>
+<p>黑盒、白盒、灰盒</p>
+<p>是否包括破坏性测试，例如DoS、缓冲区溢出</p>
+<p>是否包括社工测试等</p>
+<p>测试时间、地点</p>
+<p>测试起止时间</p>
+<p>测试时间段，例如仅允许在非业务办理时间段内等</p>
+<p>其他需要沟通的测试相关</p>
+<h3 id="12、项目启动"><a href="#12、项目启动" class="headerlink" title="12、项目启动"></a>12、项目启动</h3><p><strong>获得正式授权</strong></p>
+<p>授权书：用户方正式盖章的授权书或其他形式</p>
+<p>测试授权文件包括以下内容</p>
+<p>测试时间：开始、结束时间，允许测试的时间端</p>
+<p>测试地点：允许进行测试的地点，例如测试使用IP</p>
+<p>测试方式：允许或限制的测试方式，例如不允许进行拒绝服务类测试等</p>
+<p>测试对象、范围：允许测试的目标对象，例如IP地址段、域名等</p>
+<p><strong>签署保密协议</strong></p>
+<p>保密范围、对象等</p>
+<h3 id="13、项目准备"><a href="#13、项目准备" class="headerlink" title="13、项目准备"></a>13、项目准备</h3><p>编写测试方案</p>
+<p>项目启动阶段沟通内容形成测试方案</p>
+<p>与相关方沟通达成一致</p>
+<p>方案汇报或评审</p>
+<p>如需要进行方案汇报或评审，需要准备方案交流汇报的幻灯片</p>
+<h3 id="14、项目准备-测试工具准备"><a href="#14、项目准备-测试工具准备" class="headerlink" title="14、项目准备-测试工具准备"></a>14、项目准备-测试工具准备</h3><p><strong>信息收集</strong></p>
+<p>端口扫描</p>
+<p>漏洞扫描</p>
+<p>域名解析</p>
+<p>信息调查</p>
+<p><strong>口令破解</strong></p>
+<p><strong>漏洞利用</strong></p>
+<p>Sqlmap</p>
+<p>Burpsuite</p>
+<p>Metasploit</p>
+<p><strong>集成工具</strong></p>
+<p>kali linux</p>
+<p>悬剑</p>
+<h3 id="15、项目准备-编写应急方案"><a href="#15、项目准备-编写应急方案" class="headerlink" title="15、项目准备-编写应急方案"></a>15、项目准备-编写应急方案</h3><p>充分考虑测试可能存在的风险</p>
+<p>制定风险处置措施，避免或降低测试可能带来的损失</p>
+<p>编写应急预案并与相关方确认</p>
+<p>执行应急预案</p>
+<h3 id="16、测试实施-信息收集"><a href="#16、测试实施-信息收集" class="headerlink" title="16、测试实施-信息收集"></a><strong>16、测试实施-信息收集</strong></h3><p><strong>了解目标对象的过程</strong></p>
+<p><strong>信息收集方式</strong></p>
+<p><strong>扫描</strong></p>
+<p>​    端口扫描</p>
+<p>​    漏洞扫描</p>
+<p><strong>公开信息</strong></p>
+<p>​    搜索引擎</p>
+<p>​    网站、论坛</p>
+<p>​    媒体报道</p>
+<p><strong>其他方式</strong></p>
+<p>​    社工</p>
+<p>​    ……</p>
+<h3 id="17、测试实施-脆弱性测试"><a href="#17、测试实施-脆弱性测试" class="headerlink" title="17、测试实施-脆弱性测试"></a>17、测试实施-脆弱性测试</h3><p><strong>工具测试（漏洞扫描）</strong></p>
+<p>优点：高效、方便、测试内容全面</p>
+<p>不足：存在误报、漏报等情况</p>
+<p><strong>测试方式</strong></p>
+<p>漏洞扫描，通用脆弱性测试方式，高效、方便，能发现各类通用漏洞</p>
+<p>特定漏洞扫描：针对特定类型漏洞或特定漏洞</p>
+<p><strong>手工测试</strong></p>
+<p>漏洞测试（例如SQL注入测试）</p>
+<p>错误反馈</p>
+<p>错误配置</p>
+<p>……</p>
+<h3 id="18、测试实施-问题验证"><a href="#18、测试实施-问题验证" class="headerlink" title="18、测试实施-问题验证"></a>18、<strong>测试实施-问题验证</strong></h3><p>对脆弱性测试中发现的问题进行验证</p>
+<p>对漏洞进行利用以发现问题（非破坏性漏洞）</p>
+<p>对漏洞存在环境进行验证（破坏性漏洞）</p>
+<p>​    漏洞存在的环境是否符合目标对象情况</p>
+<p>​    漏洞测试方式是否存在误报可能</p>
+<p>​    是否有另外方式进行验证是否存在漏洞</p>
+<h3 id="19、测试实施-关联数据搜集"><a href="#19、测试实施-关联数据搜集" class="headerlink" title="19、测试实施-关联数据搜集"></a>19、测试实施-关联数据搜集</h3><p>脆弱性利用数据</p>
+<p>利用工具、代码（exploit）</p>
+<p>脆弱性测试工具</p>
+<p>脆弱性防御工具</p>
+<p>补丁、升级版本</p>
+<p>防护软件</p>
+<h3 id="20、测试报告-测试数据"><a href="#20、测试报告-测试数据" class="headerlink" title="20、测试报告-测试数据"></a>20、测试报告-测试数据</h3><p><strong>保留测试过程证据</strong></p>
+<p>扫描原始记录（工程文件）</p>
+<p>操作记录</p>
+<p><strong>保留测试结果证据</strong></p>
+<p>测试结果截屏（录屏）</p>
+<p>获取到的文件等非破坏性证据</p>
+<h3 id="21、报告-汇总问题并提供解决建议"><a href="#21、报告-汇总问题并提供解决建议" class="headerlink" title="21、报告-汇总问题并提供解决建议"></a><strong>21、报告-汇总问题并提供解决建议</strong></h3><p>对测试数据进行汇总分析</p>
+<p>问题类型</p>
+<p>严重程度</p>
+<p>关联数据</p>
+<p>提供解决措施</p>
+<p>补丁</p>
+<p>防火墙策略</p>
+<p>关闭服务··</p>
+<p>权限调整</p>
+<p>……</p>
+<h3 id="22、测试汇报-测试报告及幻灯片"><a href="#22、测试汇报-测试报告及幻灯片" class="headerlink" title="22、测试汇报-测试报告及幻灯片"></a><strong>22、测试汇报-测试报告及幻灯片</strong></h3><p>编写测试报告</p>
+<p>整理测试相关数据，编制渗透测试报告</p>
+<p>测试报告与相关方沟通达成一致</p>
+<p>编写项目汇报幻灯片</p>
+<h3 id="23、测试汇报-测试报告格式"><a href="#23、测试汇报-测试报告格式" class="headerlink" title="23、测试汇报-测试报告格式"></a><strong>23、测试汇报-测试报告格式</strong></h3><p><strong>项目背景</strong></p>
+<p><strong>测试目标系统现状</strong></p>
+<p><strong>测试相关操作</strong></p>
+<p>​    技术测试</p>
+<p>​    管理测试</p>
+<p><strong>测试实施</strong></p>
+<p>​    测试方式、测试时间、测试地点、测试团队、测试工作流程等</p>
+<p><strong>问题说明</strong></p>
+<p>​    解决措施建议</p>
+<p>​    给出一个或多个可供选择的参考</p>
+<h3 id="24、渗透测试中的风险规避"><a href="#24、渗透测试中的风险规避" class="headerlink" title="24、渗透测试中的风险规避"></a>24、<strong>渗透测试中的风险规避</strong></h3><p>为什么要进行风险规避</p>
+<p>渗透测试是模拟攻击，在测试过程中存在对测试对象保密性、可用性和完整性的影响，在项目中应采取主动措施以避免或降低由于测试带来的相关风险</p>
+<p>风险规避是一种有效的风险管理方式</p>
+<p>了解渗透测试中的风险，在确定项目目标、项目范围、测试方式等时考虑相关风险</p>
+<p>对渗透测试方案进行评审</p>
+<p>测试实施过程中也应关注测试对象状况以规避风险</p>
+<h3 id="25、渗透测试中的风险规避方法"><a href="#25、渗透测试中的风险规避方法" class="headerlink" title="25、渗透测试中的风险规避方法"></a>25、<strong>渗透测试中的风险规避方法</strong></h3><p>放弃或终止可能导致风险的实施活动，例如</p>
+<p>扫描时关闭DDoS类测试</p>
+<p>不进行缓冲区溢出类测试</p>
+<p>……</p>
+<p>改变实施活动的性质，例如</p>
+<p>风险较高的测试在测试环境而非生产环境中进行</p>
+<p>对数据进行备份避免测试导致数据丢失</p>
+<p>……</p>
+<h3 id="26、风险规避措施"><a href="#26、风险规避措施" class="headerlink" title="26、风险规避措施"></a>26、<strong>风险规避措施</strong></h3><p>授权措施</p>
+<p>保密措施</p>
+<p>方案评审</p>
+<p>人员</p>
+<p>时间</p>
+<p>范围</p>
+<p>测试方式</p>
+<p>测试工具</p>
+<p>备份</p>
+<h3 id="27、风险规避措施-授权"><a href="#27、风险规避措施-授权" class="headerlink" title="27、风险规避措施-授权"></a>27、<strong>风险规避措施-授权</strong></h3><p>合法： 避免法律风险</p>
+<p>正式授权是风险规避渗透测试实施的前提</p>
+<p>合规：明确合规性操作内容</p>
+<p>是否在授权范围内操作是风险责任判定依据</p>
+<h3 id="28、风险规避措施-保密"><a href="#28、风险规避措施-保密" class="headerlink" title="28、风险规避措施-保密"></a>28、<strong>风险规避措施-保密</strong></h3><p><strong>保密协议</strong></p>
+<p>​    依托法律手段避免数据泄露</p>
+<p><strong>数据保护</strong></p>
+<p>​    测试环境</p>
+<p>​    测试数据</p>
+<p>​        对真实生产数据进行脱敏后用于测试环境</p>
+<p>​        按业务规则构造的仅用于测试的虚拟数据</p>
+<h3 id="29、风险的规避-方案评审"><a href="#29、风险的规避-方案评审" class="headerlink" title="29、风险的规避-方案评审"></a>29、<strong>风险的规避-方案评审</strong></h3><p>依托流程和专家经验确保渗透测试方案合理</p>
+<p>​    合格的渗透测试人员</p>
+<p>​    授权的时间</p>
+<p>​    授权地点</p>
+<p>​    授权的范围</p>
+<p>​    授权的方式</p>
+<p>​    合规的工具</p>
+<h3 id="30、风险规避措施-备份"><a href="#30、风险规避措施-备份" class="headerlink" title="30、风险规避措施-备份"></a>30、<strong>风险规避措施-备份</strong></h3><p>系统备份</p>
+<p>数据备份</p>
+<pre><code class="hljs plain">提高系统的可用性和可恢复性，在系统崩溃时，可以利用备份恢复系统或数据</code></pre>
 
-<p>找到上面代码中的这部分，将图片换掉就好。</p>
-<hr>
-<h3 id="夜间模式"><a href="#夜间模式" class="headerlink" title="夜间模式"></a>夜间模式</h3><p>注意事项：以下修改的前提是这篇文章的样式：<a href="https://hexo.fluid-dev.com/posts/hexo-darkmode/" target="_blank" rel="noopener">https://hexo.fluid-dev.com/posts/hexo-darkmode/</a></p>
-<p><img src="https://img.mvpxt.cn/%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%964.png" srcset="/img/loading.gif" alt="04"></p>
-<p>​    </p>
-<p>至于这个小太阳，切换夜间模式的功能；这部分没少问九师傅，虽然本人很菜，但有个乐于助人的师傅，在师傅的精心教导下，还是弄好了；再次感谢九师傅！！师傅NB！！</p>
-<p>源样式文章地址：<a href="https://hexo.fluid-dev.com/posts/hexo-darkmode/" target="_blank" rel="noopener">https://hexo.fluid-dev.com/posts/hexo-darkmode/</a></p>
-<hr>
-<h4 id="css"><a href="#css" class="headerlink" title="css"></a>css</h4><p>在css样式中</p>
-<pre><code class="hljs stylus"><span class="hljs-comment">/* 切换按钮 */</span>
-#dark
-  <span class="hljs-attribute">cursor</span> pointer
-  <span class="hljs-attribute">position</span> fixed
-  <span class="hljs-attribute">right</span> <span class="hljs-number">40px</span>
-  <span class="hljs-attribute">bottom</span> <span class="hljs-number">98px</span>
-  <span class="hljs-attribute">width</span> <span class="hljs-number">16px</span>
-  <span class="hljs-attribute">height</span> <span class="hljs-number">14px</span>
-  <span class="hljs-attribute">z-index</span> <span class="hljs-number">100</span>
-  <span class="hljs-attribute">font-size</span> <span class="hljs-number">20px</span>
-
-<span class="hljs-comment">/*暗黑模式*/</span>
-.dark
-  <span class="hljs-attribute">background-color</span> <span class="hljs-number">#282c34</span>
-
-  <span class="hljs-comment">/* 背景遮罩 */</span>
-  .<span class="hljs-attribute">mask</span>
-    background-color rgba(0,0,0,.7) !important
-
-  <span class="hljs-comment">/* 主体 */</span>
-  <span class="hljs-selector-id">#board</span> 
-    <span class="hljs-attribute">background-color</span> <span class="hljs-number">#282c34</span>
-    <span class="hljs-attribute">color</span> <span class="hljs-number">#a09c9c</span>
-  
-  <span class="hljs-selector-tag">img</span>  
-    <span class="hljs-attribute">filter</span> brightness(<span class="hljs-number">50%</span>) // 图片亮度
-
-  p
-  <span class="hljs-selector-class">.index-info</span> <span class="hljs-selector-tag">a</span>  
-    <span class="hljs-attribute">color</span> <span class="hljs-number">#a09c9c</span> !important
-
-  .markdown-body
-    <span class="hljs-selector-tag">h1</span>,<span class="hljs-selector-tag">h2</span>,<span class="hljs-selector-tag">h3</span>,<span class="hljs-selector-tag">h4</span>,<span class="hljs-selector-tag">h5</span>,<span class="hljs-selector-tag">h6</span>,s,<span class="hljs-selector-tag">li</span>  
-      <span class="hljs-attribute">color</span>:<span class="hljs-number">#a09c9c</span> !important
-    
-
-  <span class="hljs-comment">/* 顶栏 */</span>
-  .navbar-col-show
-  <span class="hljs-selector-class">.top-nav-collapse</span>  
-    <span class="hljs-attribute">background-color</span> <span class="hljs-number">#282c34</span>
-    
-  <span class="hljs-selector-class">.navbar</span> <span class="hljs-selector-tag">a</span>  
-    <span class="hljs-attribute">color</span> <span class="hljs-number">#a09c9c</span> !important
-    
-  <span class="hljs-selector-class">.animated-icon</span> <span class="hljs-selector-tag">span</span>   <span class="hljs-comment">/* 手机端 */</span>
-    <span class="hljs-attribute">background-color</span> <span class="hljs-number">#a09c9c</span>
 
 
-  <span class="hljs-comment">/* page-number */</span>
-  <span class="hljs-selector-class">.pagination</span> <span class="hljs-selector-tag">a</span>:hover
-  <span class="hljs-selector-class">.pagination</span> <span class="hljs-selector-class">.current</span>  
-    <span class="hljs-attribute">background-color</span> <span class="hljs-number">#6b6b6b</span>73;
-
-
-  <span class="hljs-comment">/* 打字机 */</span>
-  #subtitle
-  <span class="hljs-selector-class">.dark</span>.typed-<span class="hljs-attribute">cursor</span>--blink
-  .scroll-down-arrow
-    <span class="hljs-attribute">color</span> <span class="hljs-number">#dfdfdf</span>
-
-
-  <span class="hljs-comment">/* back to top */</span>
-  #scroll-<span class="hljs-attribute">top</span>-button
-    <span class="hljs-attribute">background-color</span> <span class="hljs-number">#282c34</span>
-
-    i
-      <span class="hljs-attribute">color</span> <span class="hljs-number">#a09c9c</span>
-    
-
-  <span class="hljs-comment">/* Toc */</span>
-  <span class="hljs-selector-class">.tocbot-list</span> a
-    <span class="hljs-attribute">color</span> <span class="hljs-number">#a09c9c</span>
-
-  .tocbot-active-link
-  <span class="hljs-selector-tag">footer</span> <span class="hljs-selector-tag">a</span>:hover
-    <span class="hljs-attribute">color</span> <span class="hljs-number">#1abc9c</span> !important
-
-
-  <span class="hljs-comment">/* footer */</span>
-  footer
-  <span class="hljs-selector-tag">footer</span> a
-    <span class="hljs-attribute">color</span> <span class="hljs-number">#a09c9c</span>
-    
-
-  <span class="hljs-comment">/* 归档页 */</span>
-  .list-group-item
-    <span class="hljs-attribute">color</span> <span class="hljs-number">#a09c9c</span>
-    <span class="hljs-attribute">background-color</span> <span class="hljs-number">#282c34</span>
-    
-  <span class="hljs-selector-class">.list-group-item</span>:hover
-  <span class="hljs-selector-class">.tagcloud</span> <span class="hljs-selector-tag">a</span>:hover
-    <span class="hljs-attribute">background-color</span> <span class="hljs-number">#46484d</span>
-
-
-  <span class="hljs-comment">/* 友链页 */</span>
-  .links
-    <span class="hljs-selector-class">.card</span>  
-      <span class="hljs-attribute">background-color</span> <span class="hljs-number">#282c34</span>
-        
-    <span class="hljs-selector-class">.card-body</span>:hover  
-      <span class="hljs-attribute">background-color</span> <span class="hljs-number">#46484d</span>
-        
-    .link-title
-    <span class="hljs-selector-class">.link-intro</span>  
-      <span class="hljs-attribute">color</span> <span class="hljs-number">#a09c9c</span>
-    
-
-  <span class="hljs-comment">/* note标签 配色有点丑 */</span>
-  .note-info
-    <span class="hljs-attribute">background-color</span> <span class="hljs-number">#3b5359</span>
-    <span class="hljs-attribute">border-color</span> <span class="hljs-number">#006d80</span>
-
-  .note-danger
-    <span class="hljs-attribute">background-color</span> <span class="hljs-number">#783f42</span>
-    <span class="hljs-attribute">border-color</span> <span class="hljs-number">#670009</span>
-
-  .note-success
-    <span class="hljs-attribute">background-color</span> <span class="hljs-number">#2a3e2e</span>
-    <span class="hljs-attribute">border-color</span> <span class="hljs-number">#005915</span>
-
-  .note-warning
-    <span class="hljs-attribute">background-color</span> <span class="hljs-number">#5b543e</span>
-    <span class="hljs-attribute">border-color</span> <span class="hljs-number">#846500</span>
-
-  .note-primary
-    <span class="hljs-attribute">background-color</span> <span class="hljs-number">#455a6f</span>
-    <span class="hljs-attribute">border-color</span> <span class="hljs-number">#004188</span></code></pre>
-
-
-
-<p>将下面这部分</p>
-<pre><code class="hljs stylus"><span class="hljs-comment">/* 切换按钮 */</span>
-#dark
-  <span class="hljs-attribute">cursor</span> pointer
-  <span class="hljs-attribute">position</span> fixed
-  <span class="hljs-attribute">right</span> <span class="hljs-number">40px</span>
-  <span class="hljs-attribute">bottom</span> <span class="hljs-number">98px</span>
-  <span class="hljs-attribute">width</span> <span class="hljs-number">16px</span>
-  <span class="hljs-attribute">height</span> <span class="hljs-number">14px</span>
-  <span class="hljs-attribute">z-index</span> <span class="hljs-number">100</span>
-  <span class="hljs-attribute">font-size</span> <span class="hljs-number">20px</span></code></pre>
-
-
-
-<p>替换为下面这部分：</p>
-<pre><code class="hljs stylus"><span class="hljs-comment">/* 切换按钮 */</span>
-#dark
-&#123;
-  <span class="hljs-attribute">background</span>: url(<span class="hljs-string">'/img/太阳.png'</span>);
-  <span class="hljs-attribute">background-size</span>: <span class="hljs-number">100%</span> <span class="hljs-number">100%</span> !important;
-  <span class="hljs-attribute">cursor</span>: pointer;
-  <span class="hljs-attribute">width</span>: <span class="hljs-number">24px</span>;
-  <span class="hljs-attribute">height</span>: <span class="hljs-number">24px</span>;
-  <span class="hljs-attribute">margin-top</span>: <span class="hljs-number">5px</span>;
-  <span class="hljs-attribute">margin-left</span>: <span class="hljs-number">8px</span>;
-  <span class="hljs-attribute">list-style</span>:none;
-&#125;</code></pre>
-
-<p>注意图片的插入；这里的图片用的是九师傅给的图片，有需要的自行下载（估计也没人需要）：</p>
-<p><img src="https://img.mvpxt.cn/%E5%A4%AA%E9%98%B3.png" srcset="/img/loading.gif" alt="太阳"></p>
-<p><img src="https://img.mvpxt.cn/%E6%9C%88%E4%BA%AE.png" srcset="/img/loading.gif" alt="月亮"></p>
-<p><a href="https://img.mvpxt.cn/%E5%A4%AA%E9%98%B3.png" target="_blank" rel="noopener">https://img.mvpxt.cn/%E5%A4%AA%E9%98%B3.png</a></p>
-<p><a href="https://img.mvpxt.cn/%E6%9C%88%E4%BA%AE.png" target="_blank" rel="noopener">https://img.mvpxt.cn/%E6%9C%88%E4%BA%AE.png</a></p>
-<hr>
-<p>然后全局搜索：</p>
-<p class="note note-primary">switchDarkMode（）</p>
-
-<p>找到</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"dark"</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">" switchDarkMode( )"</span>&gt;</span>（手动小太阳图标）</code></pre>
-
-
-
-<p>如图所示：</p>
-<p><img src="https://img.mvpxt.cn/%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%965.png" srcset="/img/loading.gif" alt="5"></p>
-<p>将它移到\fluid\layout_partial\nav.ejs 的这个位置后修改为： </p>
-<li class="nav-item" onclick="switchDarkMode()">
-
-<p>​      <span id="dark"></span></p>
-<p>​     </li></p>
-<p>如图所示：</p>
-<p><img src="https://img.mvpxt.cn/%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%966.png" srcset="/img/loading.gif" alt="6"></p>
-<hr>
-<h4 id="js文件修改"><a href="#js文件修改" class="headerlink" title="js文件修改"></a>js文件修改</h4><h5 id="原本自定义样式的js文件先删了"><a href="#原本自定义样式的js文件先删了" class="headerlink" title="原本自定义样式的js文件先删了"></a>原本自定义样式的js文件先删了</h5><p>找到\themes\fluid\layout；将原本样式删掉。</p>
-<p>删掉图中所示：</p>
-<p><img src="https://img.mvpxt.cn/%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%967.png" srcset="/img/loading.gif" alt="7"></p>
-<p>找到\fluid\layout_partial\nav.ejs ；将下图代码加到nav下面</p>
-<pre><code class="hljs ejs">&lt;script&gt;
-  var isNight &#x3D; new Date().getHours() &gt;&#x3D; 22 || new Date().getHours() &lt; 5; &#x2F;&#x2F; 指定时间
-  &#x2F;&#x2F; 依次判断 系统暗黑模式 指定时间 缓存 dark
-  if (matchMedia(&#39;(prefers-color-scheme: dark)&#39;).matches || isNight || localStorage.getItem(&#39;dark&#39;) &#x3D;&#x3D;&#x3D; &#39;1&#39;) &#123;
-    if (!(isNight &amp;&amp; localStorage.getItem(&#39;noDark&#39;) &#x3D;&#x3D;&#x3D; &#39;1&#39;)) &#123;
-      document.body.classList.add(&#39;dark&#39;);
-    &#125;
-  &#125;
-  &#x2F;&#x2F;点击事件
-  function switchDarkMode() &#123;
-    if ($(&#39;body&#39;).hasClass(&#39;dark&#39;)) &#123;
-      document.getElementById(&#39;dark&#39;).style.backgroundImage &#x3D; &#39;url(&#x2F;img.png)&#39;
-      document.body.classList.remove(&#39;dark&#39;);
-      localStorage.setItem(&#39;noDark&#39;, &#39;1&#39;);
-      localStorage.setItem(&#39;dark&#39;, &#39;0&#39;);
-    &#125; else &#123;
-      document.getElementById(&#39;dark&#39;).style.backgroundImage &#x3D; &#39;url(&#x2F;img.png)&#39;
-      document.body.classList.add(&#39;dark&#39;);
-      localStorage.setItem(&#39;dark&#39;, &#39;1&#39;);
-      localStorage.setItem(&#39;noDark&#39;, &#39;0&#39;);
-    &#125;
-  &#125;
-
-&lt;&#x2F;script&gt;</code></pre>
-
-<p>如图所示：</p>
-<p><img src="https://img.mvpxt.cn/%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%9610.png" srcset="/img/loading.gif" alt="8"></p>
-<p>找到</p>
-<p><img src="https://img.mvpxt.cn/%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%968.png" srcset="/img/loading.gif" alt="9"></p>
-<p>将其改成图片路径名</p>
-<p>然后就完成啦！</p>
-<hr>
-<p>除此之外还有主题加入一言，文章地址：</p>
-<p><a href="https://hexo.fluid-dev.com/posts/fluid-hitokoto/" target="_blank" rel="noopener">https://hexo.fluid-dev.com/posts/fluid-hitokoto/</a></p>
+<p><img src="https://img.mvpxt.cn/shentou2.png" srcset="/img/loading.gif" alt="图片1"></p>
 
             </article>
             <hr>
@@ -558,7 +513,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/">主题配置</a>
+                      <a class="hover-with-bg" href="/categories/NISP/">NISP</a>
                     
                   </div>
                 
@@ -566,7 +521,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/">主题配置</a>
+                      <a class="hover-with-bg" href="/tags/NISP%E4%BA%8C%E7%BA%A7/">NISP二级</a>
                     
                   </div>
                 
@@ -579,18 +534,12 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/08/10/NISP%E4%BA%8C%E7%BA%A71/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">NISP二级考证记录（1）</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/06/26/biaoqian/">
-                        <span class="hidden-mobile">标签</span>
+                      <a href="/2020/09/09/nisp6/">
+                        <span class="hidden-mobile">nisp（6）应用与数据安全</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -848,7 +797,7 @@
         });
     }
     
-        typing("subtitle", "主题优化")
+        typing("subtitle", "渗透测试流程")
     
   </script>
 
