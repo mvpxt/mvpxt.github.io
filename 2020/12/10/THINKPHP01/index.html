@@ -19,7 +19,7 @@
   <meta name="description" content="划船不用桨，一生全靠浪">
   <meta name="author" content="XT">
   <meta name="keywords" content="">
-  <title>标签 - XT-Blog</title>
+  <title>THINKPHP01 - XT-Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -203,8 +203,8 @@
           
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2020-06-26 18:58">
-      2020年6月26日 晚上
+    <time datetime="2020-12-10 22:09">
+      2020年12月10日 晚上
     </time>
   </div>
 
@@ -214,7 +214,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      162 字
+      1.5k 字
     </span>
   
 
@@ -224,7 +224,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      17
        分钟
     </span>
   
@@ -264,50 +264,144 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年8月27日 晚上
+                  本文最后更新于：2020年12月10日 晚上
                 
               </p>
             
             <article class="markdown-body">
-              <h4 id="便签"><a href="#便签" class="headerlink" title="便签"></a>便签</h4><p>在 markdown 中加入如下的代码来使用便签：</p>
-<pre><code class="hljs markdown">&#123;% note success %&#125;
-文字 或者 <span class="hljs-code">`markdown`</span> 均可
-&#123;% endnote %&#125;</code></pre>
+              <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>作为PHP中对国人适应性最好的thinkPHP绝对是最适合入门的PHP后端框架了，所以在专升本的闲暇时间打算为以后做准备，打算好好学习一下thinkPHP。</p>
+<h3 id="1、PHP中的主流框架："><a href="#1、PHP中的主流框架：" class="headerlink" title="1、PHP中的主流框架："></a>1、PHP中的主流框架：</h3><p>①Zend Framework 框架，PHP官方框架。</p>
+<p>②YII框架，又叫易框架。</p>
+<p>③Symfony 框架。</p>
+<p>④Laravel框架，市场使用较多。</p>
+<p>⑤Codelgniter框架，简称CI框架。</p>
+<p>⑥ThinkPHP框架，简称TP框架，常用版本：3.2.3和 5.0.*版本。</p>
+<p>这些框架大多都基于MVC设计思想和面向对象的。</p>
+<p><strong>mvc：</strong></p>
+<p>M:模型model，处理业务数据，与数据库做交互。</p>
+<p>V:视图view，显示html页面，用户能够看到并与之交互的页面。</p>
+<p>C：控制器controller，接收请求，调用模型处理数据，调用视图显示页面。</p>
+<p>整个网站应用，分为模型、视图、控制器三大部分组成。</p>
+<hr>
+<h2 id="二、TP框架基础"><a href="#二、TP框架基础" class="headerlink" title="二、TP框架基础"></a>二、TP框架基础</h2><h3 id="1、目录结构"><a href="#1、目录结构" class="headerlink" title="1、目录结构"></a>1、目录结构</h3><pre><code class="hljs php"> <span class="hljs-number">1.</span>project  应用部署目录
+ <span class="hljs-number">2.</span>├─application           应用目录（可设置）
+ <span class="hljs-number">3.</span>│  ├─common             公共模块目录（可更改）
+ <span class="hljs-number">4.</span>│  ├─index              模块目录(可更改)
+ <span class="hljs-number">5.</span>│  │  ├─config.php      模块配置文件
+ <span class="hljs-number">6.</span>│  │  ├─common.php      模块函数文件
+ <span class="hljs-number">7.</span>│  │  ├─controller      控制器目录
+ <span class="hljs-number">8.</span>│  │  ├─model           模型目录
+ <span class="hljs-number">9.</span>│  │  ├─view            视图目录
+<span class="hljs-number">10.</span>│  │  └─ ...            更多类库目录
+<span class="hljs-number">11.</span>│  ├─command.php        命令行工具配置文件
+<span class="hljs-number">12.</span>│  ├─common.php         应用公共（函数）文件
+<span class="hljs-number">13.</span>│  ├─config.php         应用（公共）配置文件
+<span class="hljs-number">14.</span>│  ├─database.php       数据库配置文件
+<span class="hljs-number">15.</span>│  ├─tags.php           应用行为扩展定义文件
+<span class="hljs-number">16.</span>│  └─route.php          路由配置文件
+<span class="hljs-number">17.</span>├─extend                扩展类库目录（可定义）
+<span class="hljs-number">18.</span>├─<span class="hljs-keyword">public</span>                WEB 部署目录（对外访问目录）
+<span class="hljs-number">19.</span>│  ├─<span class="hljs-keyword">static</span>             静态资源存放目录(css,js,image)
+<span class="hljs-number">20.</span>│  ├─index.php          应用入口文件
+<span class="hljs-number">21.</span>│  ├─router.php         快速测试文件
+<span class="hljs-number">22.</span>│  └─.htaccess          用于 apache 的重写
+<span class="hljs-number">23.</span>├─runtime               应用的运行时目录（可写，可设置）
+<span class="hljs-number">24.</span>├─vendor                第三方类库目录（Composer）
+<span class="hljs-number">25.</span>├─thinkphp              框架系统目录
+<span class="hljs-number">26.</span>│  ├─lang               语言包目录
+<span class="hljs-number">27.</span>│  ├─library            框架核心类库目录
+<span class="hljs-number">28.</span>│  │  ├─think           Think 类库包目录
+<span class="hljs-number">29.</span>│  │  └─traits          系统 Traits 目录
+<span class="hljs-number">30.</span>│  ├─tpl                系统模板目录
+<span class="hljs-number">31.</span>│  ├─.htaccess          用于 apache 的重写
+<span class="hljs-number">32.</span>│  ├─.travis.yml        CI 定义文件
+<span class="hljs-number">33.</span>│  ├─base.php           基础定义文件
+<span class="hljs-number">34.</span>│  ├─composer.json      composer 定义文件
+<span class="hljs-number">35.</span>│  ├─console.php        控制台入口文件
+<span class="hljs-number">36.</span>│  ├─convention.php     惯例配置文件
+<span class="hljs-number">37.</span>│  ├─helper.php         助手函数文件（可选）
+<span class="hljs-number">38.</span>│  ├─LICENSE.txt        授权说明文件
+<span class="hljs-number">39.</span>│  ├─phpunit.xml        单元测试配置文件
+<span class="hljs-number">40.</span>│  ├─README.md          README 文件
+<span class="hljs-number">41.</span>│  └─start.php          框架引导文件
+<span class="hljs-number">42.</span>├─build.php             自动生成定义文件（参考）
+<span class="hljs-number">43.</span>├─composer.json         composer 定义文件
+<span class="hljs-number">44.</span>├─LICENSE.txt           授权说明文件
+<span class="hljs-number">45.</span>├─README.md             README 文件
+<span class="hljs-number">46.</span>├─think                 命令行入口文件</code></pre>
 
-<p>或者使用 HTML 形式：</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"note note-primary"</span>&gt;</span>标签<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></code></pre>
 
-<p>可选便签：</p>
-<p class="note note-primary">primary</p>
 
-<p class="note note-secondary">secondary</p>
-
-<p class="note note-success">success</p>
-
-<p class="note note-danger">danger</p>
-
-<p class="note note-warning">warning</p>
-
-<p class="note note-info">info</p>
-
-<p class="note note-light">light</p>
-
-<p class="note note-info">WARNING
-    使用时 `{% note primary %}` 和 `{% endnote %}` 需单独一行，否则会出现问题</p>
+<h3 id="2、调试模式"><a href="#2、调试模式" class="headerlink" title="2、调试模式"></a>2、调试模式</h3><p>5.0.10+版本开始，默认关闭调试模式，需要自己开启；在开发阶段可以将框架设置成调试模式，以便进行错误调试：</p>
+<p>修改 项目目录\application目录\config.php中的<code>app_debug</code>配置参数：</p>
+<pre><code class="hljs php"><span class="hljs-comment">// 关闭调试模式</span>
+<span class="hljs-string">'app_debug'</span> =&gt;  <span class="hljs-keyword">false</span>,</code></pre>
 
 
 
-<h4 id="行内标签"><a href="#行内标签" class="headerlink" title="行内标签"></a>行内标签</h4><p>在 markdown 中加入如下的代码来使用 Label：</p>
-<pre><code class="hljs markdown">&#123;% label primary @text %&#125;</code></pre>
+<p>开启后报错会提示详细的错误信息和位置；相对于 线上环境（开发完成后的阶段），叫做 部署模式或者生产模式。</p>
+<p><img src="https://img.mvpxt.cn/tk01-1.png" srcset="/img/loading.gif" alt="img"></p>
+<h3 id="3、控制器"><a href="#3、控制器" class="headerlink" title="3、控制器"></a>3、控制器</h3><h4 id="1、控制器的后缀"><a href="#1、控制器的后缀" class="headerlink" title="1、控制器的后缀"></a>1、控制器的后缀</h4><p>打开配置文件application/config.php，有如下配置</p>
+<pre><code class="hljs php"><span class="hljs-string">'controller_suffix'</span> =&gt; <span class="hljs-keyword">false</span>,</code></pre>
 
-<p>或者使用 HTML 形式：</p>
-<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"label label-primary"</span>&gt;</span>Label<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></code></pre>
+<p>表示默认情况下，控制器无特殊后缀。例如 Index控制器，文件名为Index.php</p>
+<p>如果需要进行设置，可以设置为（我们不需要这么设置）</p>
+<pre><code class="hljs php"><span class="hljs-string">'controller_suffix'</span> =&gt; <span class="hljs-string">'Controller'</span>,</code></pre>
 
-<p>可选 Label：</p>
-<p>primary default info success warning danger</p>
-<p>WARNING</p>
-<p>若使用 <code><span class="label label-primary">text</span></code>，text 不能以 @ 开头</p>
-<p>官方文档链接：<a href="https://hexo.fluid-dev.com/docs/guide/#tag-插件" target="_blank" rel="noopener">https://hexo.fluid-dev.com/docs/guide/#tag-%E6%8F%92%E4%BB%B6</a></p>
+<p>表示控制器以Controller为后缀。例如Index控制器，文件名为IndexController.php</p>
+<h3 id="2、控制器的定义"><a href="#2、控制器的定义" class="headerlink" title="2、控制器的定义"></a>2、控制器的定义</h3><p>1）定义位置及命名规则</p>
+<p>定义位置：application/模块目录/controller/目录下</p>
+<p>命名规则：控制器名称（首字母大写） + (控制器后缀，默认没有) + .php</p>
+<p>默认：Index控制器  Index.php</p>
+<p>  User控制器   User.php</p>
+<p>  Test控制器    Test.php</p>
+<p>2）编写控制器</p>
+<p>①声明命名空间  namespace  app\模块目录名\controller</p>
+<p>②引入控制器基类（可选） use think\Controller; think是命名空间 Controller是基类控制器</p>
+<p>③定义当前控制器类，继承控制器基类（可选）</p>
+<p><img src="https://img.mvpxt.cn/tk01-2.png" srcset="/img/loading.gif" alt="tp01-2"></p>
+<h3 id="3、url访问"><a href="#3、url访问" class="headerlink" title="3、url访问"></a>3、url访问</h3><p>格式：<a href="http://域名/入口文件?m=分组名&c=控制器名称&a=操作方法名称&参数名=参数值" target="_blank" rel="noopener">http://域名/入口文件/模块名/控制器名称/操作方法名称/参数名/参数值</a></p>
+<p>隐藏入口文件写法：<a href="http://域名/入口文件?m=分组名&c=控制器名称&a=操作方法名称&参数名=参数值" target="_blank" rel="noopener">http://域名/模块名/控制器名称/操作方法名称/参数名/参数值</a></p>
+<p>隐藏入口可以去掉URL地址里面的入口文件<code>index.php</code>需要对apache进行设置</p>
+<p><img src="https://img.mvpxt.cn/tk01-3.jpg" srcset="/img/loading.gif" alt="tk01-3"></p>
+<h2 id="三、创建模块"><a href="#三、创建模块" class="headerlink" title="三、创建模块"></a>三、创建模块</h2><h3 id="1、创建前后台模块"><a href="#1、创建前后台模块" class="headerlink" title="1、创建前后台模块"></a>1、创建前后台模块</h3><p>假设现在要建站，需要一个前台网站模块和后台管理系统模块；创建home（前台）和admin（后台）两个模块</p>
+<p><strong>设置访问模块</strong></p>
+<p>打开配置文件application/config.php，有如下配置</p>
+<pre><code class="hljs php"><span class="hljs-string">'default_module'</span> =&gt; <span class="hljs-string">'index'</span>,</code></pre>
+
+<p>表示默认访问模块为index模块</p>
+<p>可以更改默认模块为home模块</p>
+<pre><code class="hljs php"><span class="hljs-string">'default_module'</span> =&gt; <span class="hljs-string">'home'</span>,</code></pre>
+
+
+
+<h3 id="2、使用命令行创建模块"><a href="#2、使用命令行创建模块" class="headerlink" title="2、使用命令行创建模块"></a>2、使用命令行创建模块</h3><p>在 <strong>项目根目录</strong> 执行命令（think文件所在的目录）</p>
+<h4 id="1、命令行创建模块目录"><a href="#1、命令行创建模块目录" class="headerlink" title="1、命令行创建模块目录"></a>1、命令行创建模块目录</h4><p>自动生成模块目录命令：</p>
+<pre><code class="hljs php">php think build --module 模块名</code></pre>
+
+<p>例如：建test模块目录，执行命令 ：</p>
+<pre><code class="hljs php">php think build --module test（模块名小写）</code></pre>
+
+
+
+<h4 id="2、命令行创建控制器"><a href="#2、命令行创建控制器" class="headerlink" title="2、命令行创建控制器"></a>2、命令行创建控制器</h4><p>通常可以通过以下命令，自动创建控制器</p>
+<pre><code class="hljs php">php think make:controller 模块名/控制器名 
+php think make:controller 模块名/控制器名 --plain(空方法类)</code></pre>
+
+
+
+<h4 id="3、命令行创建模型"><a href="#3、命令行创建模型" class="headerlink" title="3、命令行创建模型"></a>3、命令行创建模型</h4><p>通常通过以下命令，自动创建模型：</p>
+<pre><code class="hljs php">php think make:model 模块名/模型名</code></pre>
+
+<p>例如：创建home模块User模型</p>
+<pre><code class="hljs php">php think make:model home/User (模型名首字母大写)</code></pre>
+
+
+
+<h2 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h2><p>1.安装部署框架，熟悉目录结构（application   public）</p>
+<p>2.控制器定义、控制器的访问（隐藏入口文件、Path_info格式url） 能够访问到指定的控制器方法</p>
+<p>3.命令行操作（创建模块，创建控制器类）（环境变量等）</p>
+<hr>
 
             </article>
             <hr>
@@ -317,7 +411,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/">主题配置</a>
+                      <a class="hover-with-bg" href="/categories/%E5%88%9D%E8%AF%86%E5%90%8E%E7%AB%AF/">初识后端</a>
                     
                   </div>
                 
@@ -325,7 +419,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/">主题配置</a>
+                      <a class="hover-with-bg" href="/tags/PHP/">PHP</a>
                     
                   </div>
                 
@@ -338,18 +432,12 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/08/10/NISP%E4%BA%8C%E7%BA%A71/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">NISP二级考证记录（1）</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/06/26/zhutiyouhua/">
-                        <span class="hidden-mobile">主题优化</span>
+                      <a href="/2020/10/10/namp/">
+                        <span class="hidden-mobile">初学nmap（1）</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -607,7 +695,7 @@
         });
     }
     
-        typing("subtitle", "标签")
+        typing("subtitle", "THINKPHP01")
     
   </script>
 
