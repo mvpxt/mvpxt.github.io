@@ -19,10 +19,19 @@
   <meta name="description" content="划船不用桨，一生全靠浪">
   <meta name="author" content="XT">
   <meta name="keywords" content="">
-  <title>归档 - XT-Blog</title>
+  <title>PL/SQL Developer工具安装 - XT-Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/ocean.min.css" />
+  
+
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -49,7 +58,7 @@
 
 <body>
 
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -179,7 +188,7 @@
 
 
     <div class="view intro-2" id="background" parallax=true
-         style="background: url('https://img.mvpxt.cn/Venice01.jpg') no-repeat center center;
+         style="background: url('https://img.mvpxt.cn/city02.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -189,12 +198,49 @@
           </span>
           
           
-          <br>
-          <span class="h2" id="hitokoto">
-              
-          </span>
           
           
+          
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2021-06-20 21:03">
+      2021年6月20日 晚上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      629 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      6
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
           
           </div>
 
@@ -206,55 +252,143 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 21 篇文章</p>
-  <hr>
-  
-    
       
-      <p class="h5">2020</p>
-    
-    <a href="/2020/08/27/nisp4/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">nisp（4）网络通信安全</span>
-      <span style="float: right;">08-27</span>
-    </a>
-  
-    
-    <a href="/2020/08/27/nisp3/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">nisp（3）物理环境安全</span>
-      <span style="float: right;">08-27</span>
-    </a>
-  
-    
-    <a href="/2020/08/27/nisp2/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">nisp（2）网络安全法律体系建设</span>
-      <span style="float: right;">08-27</span>
-    </a>
-  
-    
-    <a href="/2020/08/10/NISP%E4%BA%8C%E7%BA%A71/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">NISP二级考证记录（1）</span>
-      <span style="float: right;">08-10</span>
-    </a>
-  
-</div>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021年6月20日 晚上
+                
+              </p>
+            
+            <article class="markdown-body">
+              <h1 id="PL-SQL-Developer工具安装"><a href="#PL-SQL-Developer工具安装" class="headerlink" title="PL/SQL Developer工具安装"></a>PL/SQL Developer工具安装</h1><p>实习岗位测试运维用的是Oracle，原先公司用的PL/SQL Developer太老了；所以自己装了个比较新版本的。</p>
+<h3 id="PL-SQL-Developer-简介："><a href="#PL-SQL-Developer-简介：" class="headerlink" title="PL/SQL Developer 简介："></a>PL/SQL Developer 简介：</h3><p>PL/SQL Developer是一个集成开发环境，专门面向Oracle数据库存储程序单元的开发。不能连接其他数据库。</p>
+<p>特性：<br>　　PL/SQL编辑器，具有语法加强、SQL和PL/SQL帮助、对象描述、代码助手、编译器提示、PL/SQL完善、代码容、代码分级、浏览器按钮、超链接导航、宏库等许多智能特性，能够满足要求性最高的用户需求。当需要某个信息时，它将自动出现，至多单击即可将信息调出。</p>
+<h3 id="PL-SQL-Developer-下载方式："><a href="#PL-SQL-Developer-下载方式：" class="headerlink" title="PL/SQL Developer 下载方式："></a>PL/SQL Developer 下载方式：</h3><p>最好还是在官网下载，因为在官网下载可以找到自己对应的版本；当然百度上也是能找到的。</p>
+<p> 官网下载地址：<a href="https://www.allroundautomations.com/registered-plsqldev/" target="_blank" rel="noopener">https://www.allroundautomations.com/registered-plsqldev/</a> </p>
+<p><img src="https://img.mvpxt.cn/plsql1.png" srcset="/img/loading.gif" alt="img"></p>
+<p>外网国内大部分地区访问速度和下载应该都比较慢；下面放一个自己用的13.0.6（32/64都有；内有中文安装包）的百度云盘链接；有需要的朋友自取~</p>
+<p>链接：<a href="https://pan.baidu.com/s/1MBo-ygKetO1SkSd-K-ceEg" target="_blank" rel="noopener">https://pan.baidu.com/s/1MBo-ygKetO1SkSd-K-ceEg</a><br> 提取码：XTSE </p>
+<h3 id="PL-SQL安装："><a href="#PL-SQL安装：" class="headerlink" title="PL/SQL安装："></a>PL/SQL安装：</h3><p>安装过程和一般的软件没什么区别；注意选好安装路径即可。下面重点讲一下破解激活。</p>
+<p><strong>只可用于学习；如有侵权立马删除（手动狗头~）</strong></p>
+<p>下载后双击进入；此时跳出的登录链接先不管，点击取消即可；安好后应该是英文的这里由于汉化包装好了所以显示的是中文，上文中的百度云盘链接内有中文安装包。</p>
+<p><img src="https://img.mvpxt.cn/plsql2.png" srcset="/img/loading.gif" alt="img"></p>
+<p>中文顺序为：帮助-&gt;注册</p>
+<p>英文版顺序为：help-&gt;register;</p>
+<p>不论是中英文位置是一样的；</p>
+<p><img src="https://img.mvpxt.cn/plsql3.png" srcset="/img/loading.gif" alt="img"></p>
+<p>进去后将下文的激活码复制进去即可</p>
+<p><img src="https://img.mvpxt.cn/plsql4.png" srcset="/img/loading.gif" alt="img"></p>
+<p>下面是产品激活码（12/13都可破解）：</p>
+<p>product Code（产品编号）： 4vkjwhfeh3ufnqnmpr9brvcuyujrx3n3le<br> serial Number（序列号）：226959<br> password（口令）: xs374ca</p>
+<p>以上PL/SQL Developer13.0.4就激活成功了。</p>
+<h3 id="一些小问题"><a href="#一些小问题" class="headerlink" title="一些小问题"></a>一些小问题</h3><p>如果你也和我一样是从老版本换到新版本的话；有些要注意的事情，记得把原先的PL/SQL Developer删除了；然后进主页面后按下图的顺序在配置-&gt;首选项-&gt;链接中找到Oracle主目录名和OCI库，然后更换地址；以防数据库连接失败。</p>
+<p><img src="https://img.mvpxt.cn/plsql5.png" srcset="/img/loading.gif" alt="img"></p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Oracle/">Oracle</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/SQL/">SQL</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2021/06/16/75/">
+                        <span class="hidden-mobile">好久没更新博客了</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    function loadValine() {
+      addScript('https://cdn.staticfile.org/valine/1.4.14/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "awU93jjvUzCS1tvQr11dtYol-gzGzoHsz",
+          app_key: "X2NMIJH8dFYQ9eqkVHeV9aRa",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    }
+    createObserver(loadValine, 'vcomments');
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://valine.js.org" target="_blank" rel="nofollow noopener noopener">comments
+      powered by Valine.</a></noscript>
 
 
               </div>
-            </div>
+            
           </div>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -405,6 +539,31 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
 
 
   <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
@@ -426,15 +585,25 @@
         });
     }
     
-        fetch('https://v1.hitokoto.cn')
-        .then(response => response.json())
-        .then(data => {
-           typing("hitokoto", data.hitokoto)
-        })
-        .catch(console.error)
+        typing("subtitle", "PL/SQL Developer工具安装")
     
   </script>
 
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "left",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
 
 
 
@@ -449,6 +618,20 @@
   </script>
 
 
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 

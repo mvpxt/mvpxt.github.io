@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>PL/SQL Developer工具安装</title>
+    <link href="/2021/06/20/PL-SQL-Developer%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85/"/>
+    <url>/2021/06/20/PL-SQL-Developer%E5%B7%A5%E5%85%B7%E5%AE%89%E8%A3%85/</url>
+    
+    <content type="html"><![CDATA[<h1 id="PL-SQL-Developer工具安装"><a href="#PL-SQL-Developer工具安装" class="headerlink" title="PL/SQL Developer工具安装"></a>PL/SQL Developer工具安装</h1><p>实习岗位测试运维用的是Oracle，原先公司用的PL/SQL Developer太老了；所以自己装了个比较新版本的。</p><h3 id="PL-SQL-Developer-简介："><a href="#PL-SQL-Developer-简介：" class="headerlink" title="PL/SQL Developer 简介："></a>PL/SQL Developer 简介：</h3><p>PL/SQL Developer是一个集成开发环境，专门面向Oracle数据库存储程序单元的开发。不能连接其他数据库。</p><p>特性：<br>　　PL/SQL编辑器，具有语法加强、SQL和PL/SQL帮助、对象描述、代码助手、编译器提示、PL/SQL完善、代码容、代码分级、浏览器按钮、超链接导航、宏库等许多智能特性，能够满足要求性最高的用户需求。当需要某个信息时，它将自动出现，至多单击即可将信息调出。</p><h3 id="PL-SQL-Developer-下载方式："><a href="#PL-SQL-Developer-下载方式：" class="headerlink" title="PL/SQL Developer 下载方式："></a>PL/SQL Developer 下载方式：</h3><p>最好还是在官网下载，因为在官网下载可以找到自己对应的版本；当然百度上也是能找到的。</p><p> 官网下载地址：<a href="https://www.allroundautomations.com/registered-plsqldev/" target="_blank" rel="noopener">https://www.allroundautomations.com/registered-plsqldev/</a> </p><p><img src="https://img.mvpxt.cn/plsql1.png" srcset="/img/loading.gif" alt="img"></p><p>外网国内大部分地区访问速度和下载应该都比较慢；下面放一个自己用的13.0.6（32/64都有；内有中文安装包）的百度云盘链接；有需要的朋友自取~</p><p>链接：<a href="https://pan.baidu.com/s/1MBo-ygKetO1SkSd-K-ceEg" target="_blank" rel="noopener">https://pan.baidu.com/s/1MBo-ygKetO1SkSd-K-ceEg</a><br> 提取码：XTSE </p><h3 id="PL-SQL安装："><a href="#PL-SQL安装：" class="headerlink" title="PL/SQL安装："></a>PL/SQL安装：</h3><p>安装过程和一般的软件没什么区别；注意选好安装路径即可。下面重点讲一下破解激活。</p><p><strong>只可用于学习；如有侵权立马删除（手动狗头~）</strong></p><p>下载后双击进入；此时跳出的登录链接先不管，点击取消即可；安好后应该是英文的这里由于汉化包装好了所以显示的是中文，上文中的百度云盘链接内有中文安装包。</p><p><img src="https://img.mvpxt.cn/plsql2.png" srcset="/img/loading.gif" alt="img"></p><p>中文顺序为：帮助-&gt;注册</p><p>英文版顺序为：help-&gt;register;</p><p>不论是中英文位置是一样的；</p><p><img src="https://img.mvpxt.cn/plsql3.png" srcset="/img/loading.gif" alt="img"></p><p>进去后将下文的激活码复制进去即可</p><p><img src="https://img.mvpxt.cn/plsql4.png" srcset="/img/loading.gif" alt="img"></p><p>下面是产品激活码（12/13都可破解）：</p><p>product Code（产品编号）： 4vkjwhfeh3ufnqnmpr9brvcuyujrx3n3le<br> serial Number（序列号）：226959<br> password（口令）: xs374ca</p><p>以上PL/SQL Developer13.0.4就激活成功了。</p><h3 id="一些小问题"><a href="#一些小问题" class="headerlink" title="一些小问题"></a>一些小问题</h3><p>如果你也和我一样是从老版本换到新版本的话；有些要注意的事情，记得把原先的PL/SQL Developer删除了；然后进主页面后按下图的顺序在配置-&gt;首选项-&gt;链接中找到Oracle主目录名和OCI库，然后更换地址；以防数据库连接失败。</p><p><img src="https://img.mvpxt.cn/plsql5.png" srcset="/img/loading.gif" alt="img"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Oracle</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>SQL</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>好久没更新博客了</title>
     <link href="/2021/06/16/75/"/>
     <url>/2021/06/16/75/</url>
